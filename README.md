@@ -1,4 +1,4 @@
-# Portfolio
+# Wesley's Portfolio
 
 Minimal, professional personal portfolio site built with Next.js and NextUI.
 
