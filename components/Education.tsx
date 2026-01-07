@@ -4,10 +4,11 @@ import { useState, useEffect, useRef } from "react";
 
 // Data structure for course performance
 type CourseData = {
-  name: string;
+  name: string; // Short course code for x-axis
   grade: number; // 0-10 scale
   credits: number;
   period: string; // e.g., "Year 1, Semester 1"
+  fullName: string; // Full course description for tooltip
 };
 
 type YearData = {
@@ -21,101 +22,101 @@ const educationData: YearData[] = [
     year: 1,
     courses: [
       // Fall 2020
-      { name: "CHEM 103: Intro University Chemistry I", grade: 8.5, credits: 4.3, period: "Year 1, Fall 2020" },
-      { name: "ENCMP 100: Computer Programming Engineers", grade: 8.5, credits: 3.8, period: "Year 1, Fall 2020" },
-      { name: "ENGG 100: Success in Engineering", grade: 9.6, credits: 1.1, period: "Year 1, Fall 2020" },
-      { name: "ENGG 130: Engineering Mechanics", grade: 9.0, credits: 4.0, period: "Year 1, Fall 2020" },
-      { name: "MATH 100: Calculus I", grade: 7.4, credits: 3.5, period: "Year 1, Fall 2020" },
-      { name: "PHYS 130: Wave Motion, Optics and Sound", grade: 7.8, credits: 3.8, period: "Year 1, Fall 2020" },
+      { name: "CHEM 103", grade: 8.5, credits: 4.3, period: "Year 1, Fall 2020", fullName: "CHEM 103: Intro University Chemistry I" },
+      { name: "ENCMP 100", grade: 8.5, credits: 3.8, period: "Year 1, Fall 2020", fullName: "ENCMP 100: Computer Programming Engineers" },
+      { name: "ENGG 100", grade: 9.6, credits: 1.1, period: "Year 1, Fall 2020", fullName: "ENGG 100: Success in Engineering" },
+      { name: "ENGG 130", grade: 9.0, credits: 4.0, period: "Year 1, Fall 2020", fullName: "ENGG 130: Engineering Mechanics" },
+      { name: "MATH 100", grade: 7.4, credits: 3.5, period: "Year 1, Fall 2020", fullName: "MATH 100: Calculus I" },
+      { name: "PHYS 130", grade: 7.8, credits: 3.8, period: "Year 1, Fall 2020", fullName: "PHYS 130: Wave Motion, Optics and Sound" },
       // Winter 2021
-      { name: "CHEM 105: Intro University Chemistry II", grade: 7.4, credits: 3.8, period: "Year 1, Winter 2021" },
-      { name: "EN PH 131: Mechanics", grade: 7.4, credits: 4.3, period: "Year 1, Winter 2021" },
-      { name: "ENGG 160: Intro Eng Des Comm Profession", grade: 9.6, credits: 2.0, period: "Year 1, Winter 2021" },
-      { name: "ENGL 199: Engl for Engineering Students", grade: 9.0, credits: 3.0, period: "Year 1, Winter 2021" },
-      { name: "MATH 101: Calculus II", grade: 8.5, credits: 3.5, period: "Year 1, Winter 2021" },
-      { name: "MATH 102: Applied Linear Algebra", grade: 8.5, credits: 3.5, period: "Year 1, Winter 2021" },
+      { name: "CHEM 105", grade: 7.4, credits: 3.8, period: "Year 1, Winter 2021", fullName: "CHEM 105: Intro University Chemistry II" },
+      { name: "EN PH 131", grade: 7.4, credits: 4.3, period: "Year 1, Winter 2021", fullName: "EN PH 131: Mechanics" },
+      { name: "ENGG 160", grade: 9.6, credits: 2.0, period: "Year 1, Winter 2021", fullName: "ENGG 160: Intro Eng Des Comm Profession" },
+      { name: "ENGL 199", grade: 9.0, credits: 3.0, period: "Year 1, Winter 2021", fullName: "ENGL 199: Engl for Engineering Students" },
+      { name: "MATH 101", grade: 8.5, credits: 3.5, period: "Year 1, Winter 2021", fullName: "MATH 101: Calculus II" },
+      { name: "MATH 102", grade: 8.5, credits: 3.5, period: "Year 1, Winter 2021", fullName: "MATH 102: Applied Linear Algebra" },
       // Spring/Summer 2021
-      { name: "STAT 235A: Intro Stats for Engineering", grade: 7.1, credits: 0.0, period: "Year 1, Spring/Summer 2021" },
-      { name: "STAT 235B: Intro Stats for Engineering", grade: 7.1, credits: 3.8, period: "Year 1, Spring/Summer 2021" },
+      { name: "STAT 235A", grade: 7.1, credits: 0.0, period: "Year 1, Spring/Summer 2021", fullName: "STAT 235A: Intro Stats for Engineering" },
+      { name: "STAT 235B", grade: 7.1, credits: 3.8, period: "Year 1, Spring/Summer 2021", fullName: "STAT 235B: Intro Stats for Engineering" },
     ],
   },
   {
     year: 2,
     courses: [
       // Fall 2021
-      { name: "CIV E 270: Mechanics Deformable Bodies I", grade: 8.5, credits: 4.5, period: "Year 2, Fall 2021" },
-      { name: "ENGG 299: Orientn Co-op Ed", grade: 9.6, credits: 1.5, period: "Year 2, Fall 2021" },
-      { name: "MATH 209: Calculus III", grade: 7.4, credits: 3.5, period: "Year 2, Fall 2021" },
-      { name: "MEC E 230: Intro to Thermo-Fluid Sciences", grade: 7.8, credits: 3.5, period: "Year 2, Fall 2021" },
-      { name: "MEC E 260: Mechanical Design I", grade: 6.8, credits: 3.5, period: "Year 2, Fall 2021" },
-      { name: "MEC E 265: Engineering Graphics and CAD", grade: 7.1, credits: 3.5, period: "Year 2, Fall 2021" },
+      { name: "CIV E 270", grade: 8.5, credits: 4.5, period: "Year 2, Fall 2021", fullName: "CIV E 270: Mechanics Deformable Bodies I" },
+      { name: "ENGG 299", grade: 9.6, credits: 1.5, period: "Year 2, Fall 2021", fullName: "ENGG 299: Orientn Co-op Ed" },
+      { name: "MATH 209", grade: 7.4, credits: 3.5, period: "Year 2, Fall 2021", fullName: "MATH 209: Calculus III" },
+      { name: "MEC E 230", grade: 7.8, credits: 3.5, period: "Year 2, Fall 2021", fullName: "MEC E 230: Intro to Thermo-Fluid Sciences" },
+      { name: "MEC E 260", grade: 6.8, credits: 3.5, period: "Year 2, Fall 2021", fullName: "MEC E 260: Mechanical Design I" },
+      { name: "MEC E 265", grade: 7.1, credits: 3.5, period: "Year 2, Fall 2021", fullName: "MEC E 265: Engineering Graphics and CAD" },
       // Winter 2022
-      { name: "CHE 243: Engineering Thermodynamics", grade: 7.4, credits: 3.5, period: "Year 2, Winter 2022" },
-      { name: "ECE 209: Fundamentals of Electrical Eng", grade: 6.8, credits: 3.8, period: "Year 2, Winter 2022" },
-      { name: "MAT E 202: Materials Science II", grade: 7.8, credits: 3.5, period: "Year 2, Winter 2022" },
-      { name: "MATH 201: Differential Equations", grade: 7.4, credits: 3.5, period: "Year 2, Winter 2022" },
-      { name: "MEC E 200: Intro Mechanical Engineering", grade: 9.5, credits: 2.0, period: "Year 2, Winter 2022" },
-      { name: "MEC E 250: Engineering Mechanics II", grade: 9.0, credits: 3.5, period: "Year 2, Winter 2022" },
+      { name: "CHE 243", grade: 7.4, credits: 3.5, period: "Year 2, Winter 2022", fullName: "CHE 243: Engineering Thermodynamics" },
+      { name: "ECE 209", grade: 6.8, credits: 3.8, period: "Year 2, Winter 2022", fullName: "ECE 209: Fundamentals of Electrical Eng" },
+      { name: "MAT E 202", grade: 7.8, credits: 3.5, period: "Year 2, Winter 2022", fullName: "MAT E 202: Materials Science II" },
+      { name: "MATH 201", grade: 7.4, credits: 3.5, period: "Year 2, Winter 2022", fullName: "MATH 201: Differential Equations" },
+      { name: "MEC E 200", grade: 9.5, credits: 2.0, period: "Year 2, Winter 2022", fullName: "MEC E 200: Intro Mechanical Engineering" },
+      { name: "MEC E 250", grade: 9.0, credits: 3.5, period: "Year 2, Winter 2022", fullName: "MEC E 250: Engineering Mechanics II" },
       // Summer 2022
-      { name: "WKEXP 901: Engineering Work Experience I", grade: 9.6, credits: 0.5, period: "Year 2, Summer 2022" },
+      { name: "WKEXP 901", grade: 9.6, credits: 0.5, period: "Year 2, Summer 2022", fullName: "WKEXP 901: Engineering Work Experience I" },
     ],
   },
   {
     year: 3,
     courses: [
       // Fall 2022
-      { name: "ENG M 401: Financial Mngm for Engineers", grade: 9.0, credits: 3.0, period: "Year 3, Fall 2022" },
-      { name: "WKEXP 902: Engineering Work Experience II", grade: 9.6, credits: 0.5, period: "Year 3, Fall 2022" },
+      { name: "ENG M 401", grade: 9.0, credits: 3.0, period: "Year 3, Fall 2022", fullName: "ENG M 401: Financial Mngm for Engineers" },
+      { name: "WKEXP 902", grade: 9.6, credits: 0.5, period: "Year 3, Fall 2022", fullName: "WKEXP 902: Engineering Work Experience II" },
       // Winter 2023
-      { name: "MATH 300: Advanced Boundary Value Prob I", grade: 7.4, credits: 3.0, period: "Year 3, Winter 2023" },
-      { name: "MEC E 300: Mechanical Measurements", grade: 8.5, credits: 3.5, period: "Year 3, Winter 2023" },
-      { name: "MEC E 301: Mechanical Engineering Lab I", grade: 8.5, credits: 2.5, period: "Year 3, Winter 2023" },
-      { name: "MEC E 331: Fluid Mechanics I", grade: 8.5, credits: 3.5, period: "Year 3, Winter 2023" },
-      { name: "MEC E 371: Heat Transfer", grade: 8.5, credits: 3.5, period: "Year 3, Winter 2023" },
-      { name: "MEC E 380: Adv Strength of Materials I", grade: 7.8, credits: 3.5, period: "Year 3, Winter 2023" },
+      { name: "MATH 300", grade: 7.4, credits: 3.0, period: "Year 3, Winter 2023", fullName: "MATH 300: Advanced Boundary Value Prob I" },
+      { name: "MEC E 300", grade: 8.5, credits: 3.5, period: "Year 3, Winter 2023", fullName: "MEC E 300: Mechanical Measurements" },
+      { name: "MEC E 301", grade: 8.5, credits: 2.5, period: "Year 3, Winter 2023", fullName: "MEC E 301: Mechanical Engineering Lab I" },
+      { name: "MEC E 331", grade: 8.5, credits: 3.5, period: "Year 3, Winter 2023", fullName: "MEC E 331: Fluid Mechanics I" },
+      { name: "MEC E 371", grade: 8.5, credits: 3.5, period: "Year 3, Winter 2023", fullName: "MEC E 371: Heat Transfer" },
+      { name: "MEC E 380", grade: 7.8, credits: 3.5, period: "Year 3, Winter 2023", fullName: "MEC E 380: Adv Strength of Materials I" },
       // Summer 2023
-      { name: "WKEXP 903: Engineering Wrk Experience III", grade: 9.6, credits: 0.5, period: "Year 3, Summer 2023" },
+      { name: "WKEXP 903", grade: 9.6, credits: 0.5, period: "Year 3, Summer 2023", fullName: "WKEXP 903: Engineering Wrk Experience III" },
     ],
   },
   {
     year: 4,
     courses: [
       // Fall 2023
-      { name: "WKEXP 904: Engineering Work Experience IV", grade: 9.6, credits: 0.5, period: "Year 4, Fall 2023" },
+      { name: "WKEXP 904", grade: 9.6, credits: 0.5, period: "Year 4, Fall 2023", fullName: "WKEXP 904: Engineering Work Experience IV" },
       // Winter 2024
-      { name: "ECON 101: Introduction to Microeconomics", grade: 8.5, credits: 3.0, period: "Year 4, Winter 2024" },
-      { name: "MEC E 340: Applied Thermodynamics", grade: 8.5, credits: 3.5, period: "Year 4, Winter 2024" },
-      { name: "MEC E 360: Mechanical Design II", grade: 9.5, credits: 3.8, period: "Year 4, Winter 2024" },
-      { name: "MEC E 362: Mechanics of Machines", grade: 6.8, credits: 3.8, period: "Year 4, Winter 2024" },
-      { name: "MEC E 390: Numerical Methods Mec Eng", grade: 7.8, credits: 3.5, period: "Year 4, Winter 2024" },
+      { name: "ECON 101", grade: 8.5, credits: 3.0, period: "Year 4, Winter 2024", fullName: "ECON 101: Introduction to Microeconomics" },
+      { name: "MEC E 340", grade: 8.5, credits: 3.5, period: "Year 4, Winter 2024", fullName: "MEC E 340: Applied Thermodynamics" },
+      { name: "MEC E 360", grade: 9.5, credits: 3.8, period: "Year 4, Winter 2024", fullName: "MEC E 360: Mechanical Design II" },
+      { name: "MEC E 362", grade: 6.8, credits: 3.8, period: "Year 4, Winter 2024", fullName: "MEC E 362: Mechanics of Machines" },
+      { name: "MEC E 390", grade: 7.8, credits: 3.5, period: "Year 4, Winter 2024", fullName: "MEC E 390: Numerical Methods Mec Eng" },
       // Spring/Summer 2024
-      { name: "ENGG 404A: Engg Safety and Risk Mgmt-Lead", grade: 8.5, credits: 0.0, period: "Year 4, Spring/Summer 2024" },
-      { name: "MEC E 403A: Mechanical Engineering Lab II", grade: 7.4, credits: 0.0, period: "Year 4, Spring/Summer 2024" },
-      { name: "MEC E 420A: Fdback Control Des Dynam Syst", grade: 7.4, credits: 0.0, period: "Year 4, Spring/Summer 2024" },
-      { name: "MEC E 430A: Fluid Mechanics II", grade: 9.0, credits: 0.0, period: "Year 4, Spring/Summer 2024" },
-      { name: "MEC E 463A: Thermo-Fluids Systems Design", grade: 9.0, credits: 0.0, period: "Year 4, Spring/Summer 2024" },
-      { name: "MEC E 537A: Aerodynamics", grade: 8.5, credits: 0.0, period: "Year 4, Spring/Summer 2024" },
-      { name: "ENGG 404B: Engg Safety and Risk Mgmt-Lead", grade: 8.5, credits: 3.8, period: "Year 4, Spring/Summer 2024" },
-      { name: "MEC E 403B: Mechanical Engineering Lab II", grade: 7.4, credits: 2.5, period: "Year 4, Spring/Summer 2024" },
-      { name: "MEC E 420B: Fdback Control Des Dynam Syst", grade: 7.4, credits: 3.8, period: "Year 4, Spring/Summer 2024" },
-      { name: "MEC E 430B: Fluid Mechanics II", grade: 9.0, credits: 3.0, period: "Year 4, Spring/Summer 2024" },
-      { name: "MEC E 463B: Thermo-Fluids Systems Design", grade: 9.0, credits: 4.0, period: "Year 4, Spring/Summer 2024" },
-      { name: "MEC E 537B: Aerodynamics", grade: 8.5, credits: 3.0, period: "Year 4, Spring/Summer 2024" },
+      { name: "ENGG 404A", grade: 8.5, credits: 0.0, period: "Year 4, Spring/Summer 2024", fullName: "ENGG 404A: Engg Safety and Risk Mgmt-Lead" },
+      { name: "MEC E 403A", grade: 7.4, credits: 0.0, period: "Year 4, Spring/Summer 2024", fullName: "MEC E 403A: Mechanical Engineering Lab II" },
+      { name: "MEC E 420A", grade: 7.4, credits: 0.0, period: "Year 4, Spring/Summer 2024", fullName: "MEC E 420A: Fdback Control Des Dynam Syst" },
+      { name: "MEC E 430A", grade: 9.0, credits: 0.0, period: "Year 4, Spring/Summer 2024", fullName: "MEC E 430A: Fluid Mechanics II" },
+      { name: "MEC E 463A", grade: 9.0, credits: 0.0, period: "Year 4, Spring/Summer 2024", fullName: "MEC E 463A: Thermo-Fluids Systems Design" },
+      { name: "MEC E 537A", grade: 8.5, credits: 0.0, period: "Year 4, Spring/Summer 2024", fullName: "MEC E 537A: Aerodynamics" },
+      { name: "ENGG 404B", grade: 8.5, credits: 3.8, period: "Year 4, Spring/Summer 2024", fullName: "ENGG 404B: Engg Safety and Risk Mgmt-Lead" },
+      { name: "MEC E 403B", grade: 7.4, credits: 2.5, period: "Year 4, Spring/Summer 2024", fullName: "MEC E 403B: Mechanical Engineering Lab II" },
+      { name: "MEC E 420B", grade: 7.4, credits: 3.8, period: "Year 4, Spring/Summer 2024", fullName: "MEC E 420B: Fdback Control Des Dynam Syst" },
+      { name: "MEC E 430B", grade: 9.0, credits: 3.0, period: "Year 4, Spring/Summer 2024", fullName: "MEC E 430B: Fluid Mechanics II" },
+      { name: "MEC E 463B", grade: 9.0, credits: 4.0, period: "Year 4, Spring/Summer 2024", fullName: "MEC E 463B: Thermo-Fluids Systems Design" },
+      { name: "MEC E 537B", grade: 8.5, credits: 3.0, period: "Year 4, Spring/Summer 2024", fullName: "MEC E 537B: Aerodynamics" },
     ],
   },
   {
     year: 5,
     courses: [
       // Fall 2024
-      { name: "SUST 201: Intro to Sustainability", grade: 7.8, credits: 3.0, period: "Year 5, Fall 2024" },
-      { name: "WKEXP 905: Engineering Work Experience V", grade: 9.6, credits: 3.0, period: "Year 5, Fall 2024" },
+      { name: "SUST 201", grade: 7.8, credits: 3.0, period: "Year 5, Fall 2024", fullName: "SUST 201: Intro to Sustainability" },
+      { name: "WKEXP 905", grade: 9.6, credits: 3.0, period: "Year 5, Fall 2024", fullName: "WKEXP 905: Engineering Work Experience V" },
       // Winter 2025
-      { name: "ENGG 400: Practice Engineering Profes", grade: 9.6, credits: 1.0, period: "Year 5, Winter 2025" },
-      { name: "MEC E 415: Busting Myths with Analysis", grade: 7.8, credits: 3.0, period: "Year 5, Winter 2025" },
-      { name: "MEC E 451: Vibrations and Sound", grade: 7.4, credits: 3.5, period: "Year 5, Winter 2025" },
-      { name: "MEC E 460: Design Project", grade: 8.5, credits: 4.5, period: "Year 5, Winter 2025" },
-      { name: "MEC E 464: Design for Manufacture", grade: 8.5, credits: 4.0, period: "Year 5, Winter 2025" },
-      { name: "MEC E 563: Finite Element Method", grade: 8.5, credits: 4.5, period: "Year 5, Winter 2025" },
+      { name: "ENGG 400", grade: 9.6, credits: 1.0, period: "Year 5, Winter 2025", fullName: "ENGG 400: Practice Engineering Profes" },
+      { name: "MEC E 415", grade: 7.8, credits: 3.0, period: "Year 5, Winter 2025", fullName: "MEC E 415: Busting Myths with Analysis" },
+      { name: "MEC E 451", grade: 7.4, credits: 3.5, period: "Year 5, Winter 2025", fullName: "MEC E 451: Vibrations and Sound" },
+      { name: "MEC E 460", grade: 8.5, credits: 4.5, period: "Year 5, Winter 2025", fullName: "MEC E 460: Design Project" },
+      { name: "MEC E 464", grade: 8.5, credits: 4.0, period: "Year 5, Winter 2025", fullName: "MEC E 464: Design for Manufacture" },
+      { name: "MEC E 563", grade: 8.5, credits: 4.5, period: "Year 5, Winter 2025", fullName: "MEC E 563: Finite Element Method" },
     ],
   },
 ];
@@ -326,7 +327,7 @@ export default function Education() {
 
               {/* Data points and labels - only show visible points during animation */}
               {visiblePoints.map((point, i) => {
-                const truncatedName = getTruncatedName(point.name, 10);
+                const truncatedName = getTruncatedName(point.name, 15);
                 const labelY = height - padding.bottom + 25;
                 const labelX = point.x;
 
@@ -747,7 +748,7 @@ export default function Education() {
             transform: `translate(${tooltip.transformX || "-50%"}, ${tooltip.transformY || "-100%"})`,
           }}
         >
-          <div className="font-semibold mb-1">{tooltip.course.name}</div>
+          <div className="font-semibold mb-1">{tooltip.course.fullName}</div>
           <div className="text-background/80">
             Grade: {tooltip.course.grade.toFixed(1)} / 10
           </div>
