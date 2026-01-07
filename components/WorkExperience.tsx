@@ -48,6 +48,19 @@ export default function WorkExperience() {
       tags: ["Construction", "Automation", "Field Work", "Reporting"],
     },
     {
+      yearStart: "2024",
+      yearEnd: "2024",
+      monthStart: "September",
+      monthEnd: "December",
+      workType: "Contract Part-time",
+      jobTitle: "Junior Programmer",
+      companyName: "Beyond Energy Services and Technology Corp.",
+      location: "Calgary, AB, Canada (Remote)",
+      description:
+        "Developed an Excel-based pricing calculator using VBA, reducing quote preparation time by 80% and manual entry errors by 90%. Collaborated with engineering, R&D, and finance teams to deliver tools supporting inventory tracking, test planning, and documentation.",
+      tags: ["VBA", "Excel", "Automation", "Data Management", "Cross-functional"],
+    },
+    {
       yearStart: "2023",
       yearEnd: "2023",
       monthStart: "May",
