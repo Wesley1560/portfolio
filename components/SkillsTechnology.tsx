@@ -67,11 +67,11 @@ export default function SkillsTechnology() {
   const getIconPath = (skillName: string) => {
     const iconMap: Record<string, string> = {
       "Python": "python.png",
-      "VBA for Excel": "python.png", // Using python icon as placeholder
-      "HTML": "python.png", // Using python icon as placeholder
+      "VBA for Excel": "vba_for_excel.png",
+      "HTML": "html.png",
       "MATLAB": "MATLAB.png",
       "MathCAD": "MathCAD.png",
-      "ROS": "python.png", // Using python icon as placeholder
+      "ROS": "ros.png",
       "JSON / MQL": "JSON.png",
       "Git": "GIT.png",
       "Leadership": "leadership.png",
@@ -91,7 +91,7 @@ export default function SkillsTechnology() {
     };
 
     const filename = iconMap[skillName];
-    // Use dark logos for both themes to ensure visibility
+    // Always use dark_logos - visual changes driven by theme only
     return filename ? `/dark_logos/${filename}` : null;
   };
 
@@ -772,7 +772,7 @@ export default function SkillsTechnology() {
                                 src={getIconPath(skill.name)!}
                                 alt={`${skill.name} icon`}
                                 fill
-                                className="object-contain"
+                                className={`object-contain ${theme === 'dark' ? 'invert' : ''}`}
                               />
                             ) : (
                               <div className="text-3xl sm:text-4xl md:text-5xl">
