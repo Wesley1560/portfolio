@@ -91,6 +91,15 @@ export default function WorkExperience() {
   const [activeTab, setActiveTab] = useState<"current" | "past">("current");
   const activeData = activeTab === "current" ? currentRole : pastExperiences;
 
+  // Ensure active tab has data, default to first available
+  useEffect(() => {
+    if (activeTab === "current" && currentRole.length === 0 && pastExperiences.length > 0) {
+      setActiveTab("past");
+    } else if (activeTab === "past" && pastExperiences.length === 0 && currentRole.length > 0) {
+      setActiveTab("current");
+    }
+  }, [activeTab, currentRole.length, pastExperiences.length]);
+
   // Carousel state
   const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -233,32 +242,36 @@ export default function WorkExperience() {
 
         <div className="flex flex-col gap-8">
           {/* Toggle Buttons */}
-          <div className="flex flex-col items-start">
-            <div className="flex gap-3">
-              <button
-                onClick={() => setActiveTab("current")}
-                className={`px-4 py-3 rounded-lg transition-all duration-200 ${
-                  activeTab === "current"
-                    ? "bg-[#695336] text-white hover:bg-[#5a4630]"
-                    : "bg-default-100 text-foreground/80 hover:bg-[#695336]/10"
-                }`}
-              >
-                <span className="font-medium">
-                  Current Role ({currentRole.length})
-                </span>
-              </button>
-              <button
-                onClick={() => setActiveTab("past")}
-                className={`px-4 py-3 rounded-lg transition-all duration-200 ${
-                  activeTab === "past"
-                    ? "bg-[#695336] text-white hover:bg-[#5a4630]"
-                    : "bg-default-100 text-foreground/80 hover:bg-[#695336]/10"
-                }`}
-              >
-                <span className="font-medium">
-                  Past Experiences ({pastExperiences.length})
-                </span>
-              </button>
+          <div className="flex flex-col items-center">
+            <div className="flex gap-3 justify-center">
+              {currentRole.length > 0 && (
+                <button
+                  onClick={() => setActiveTab("current")}
+                  className={`px-4 py-3 rounded-lg transition-all duration-200 ${
+                    activeTab === "current"
+                      ? "bg-[#695336] text-white hover:bg-[#5a4630]"
+                      : "bg-default-100 text-foreground/80 hover:bg-[#695336]/10"
+                  }`}
+                >
+                  <span className="font-medium">
+                    Current Role ({currentRole.length})
+                  </span>
+                </button>
+              )}
+              {pastExperiences.length > 0 && (
+                <button
+                  onClick={() => setActiveTab("past")}
+                  className={`px-4 py-3 rounded-lg transition-all duration-200 ${
+                    activeTab === "past"
+                      ? "bg-[#695336] text-white hover:bg-[#5a4630]"
+                      : "bg-default-100 text-foreground/80 hover:bg-[#695336]/10"
+                  }`}
+                >
+                  <span className="font-medium">
+                    Past Experiences ({pastExperiences.length})
+                  </span>
+                </button>
+              )}
             </div>
             {/* Divider Line */}
             <div className="mt-4 border-b border-default-300 w-full max-w-[600px]"></div>
