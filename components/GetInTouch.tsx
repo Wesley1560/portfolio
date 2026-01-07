@@ -11,6 +11,10 @@ export default function GetInTouch() {
     message: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -20,10 +24,41 @@ export default function GetInTouch() {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Form submission logic would go here
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setSubmitSuccess(false);
+    setSubmitError(false);
+
+    try {
+      const form = e.currentTarget;
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setSubmitSuccess(true);
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+        // Hide success message after 5 seconds
+        setTimeout(() => setSubmitSuccess(false), 5000);
+      } else {
+        setSubmitError(true);
+      }
+    } catch (error) {
+      setSubmitError(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -42,7 +77,34 @@ export default function GetInTouch() {
         <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
           {/* Form Box */}
           <div className="bg-content1 rounded-lg p-6 sm:p-8 md:p-10 border border-default-200 shadow-sm">
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+            <form 
+              action="https://formspree.io/f/YOUR_FORM_ID" 
+              method="POST"
+              onSubmit={handleSubmit} 
+              className="space-y-4 sm:space-y-5"
+            >
+              {/* Hidden inputs for Formspree configuration */}
+              <input type="hidden" name="_subject" value="Portfolio Message – New Submission" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="text" name="_gotcha" style={{ display: "none" }} />
+              
+              {/* Success Message */}
+              {submitSuccess && (
+                <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
+                  <p className="text-sm sm:text-base text-green-800 dark:text-green-200 font-medium">
+                    ✓ Message sent successfully. I'll get back to you soon.
+                  </p>
+                </div>
+              )}
+
+              {/* Error Message */}
+              {submitError && (
+                <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                  <p className="text-sm sm:text-base text-red-800 dark:text-red-200 font-medium">
+                    ✗ Something went wrong. Please try again or email me directly.
+                  </p>
+                </div>
+              )}
               {/* Name - Required */}
               <div>
                 <label
@@ -145,22 +207,25 @@ export default function GetInTouch() {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full bg-[#695336] text-white px-6 py-3 sm:py-3.5 rounded-lg font-medium text-sm sm:text-base hover:bg-[#5a4630] transition-colors duration-200 flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="w-full bg-[#695336] text-white px-6 py-3 sm:py-3.5 rounded-lg font-medium text-sm sm:text-base hover:bg-[#5a4630] disabled:bg-[#695336]/50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center justify-center gap-2"
               >
-                <span>Send Message</span>
-                <svg
-                  className="w-4 h-4 sm:w-5 sm:h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                  />
-                </svg>
+                <span>{isSubmitting ? "Sending..." : "Send Message"}</span>
+                {!isSubmitting && (
+                  <svg
+                    className="w-4 h-4 sm:w-5 sm:h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                    />
+                  </svg>
+                )}
               </button>
             </form>
           </div>
