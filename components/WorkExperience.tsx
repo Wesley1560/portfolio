@@ -16,58 +16,62 @@ type WorkExperience = {
 };
 
 export default function WorkExperience() {
-  // Stubbed data - can be replaced with real data later
+  // Work experience data sourced from resume
   const currentRole: WorkExperience[] = [
     {
-      yearStart: "2024",
+      yearStart: "2025",
       yearEnd: "Present",
-      monthStart: "January",
+      monthStart: "September",
       monthEnd: "Present",
       workType: "Full-Time",
-      jobTitle: "Software Engineer",
-      companyName: "Tech Company",
-      location: "Remote",
-      description: "Building scalable web applications and contributing to open-source projects.",
-      tags: ["React", "TypeScript", "Node.js", "AWS"],
+      jobTitle: "Additive Manufacturing Design Engineer",
+      companyName: "NEX Valve",
+      location: "Calgary, AB, Canada",
+      description:
+        "Designed 3D CAD models and detailed 2D drawings for valve components; performed FEA validations and hand calculations to verify structural integrity. Led rapid prototyping (FDM, SLA) and developed a provisional patent for a novel line blind design.",
+      tags: ["Additive Manufacturing", "CAD", "FEA", "Rapid Prototyping", "Patent"],
     },
   ];
 
   const pastExperiences: WorkExperience[] = [
     {
-      yearStart: "2023",
+      yearStart: "2024",
       yearEnd: "2024",
-      monthStart: "June",
+      monthStart: "September",
       monthEnd: "December",
-      workType: "Graduation Internship",
-      jobTitle: "Research Intern",
-      companyName: "Research Lab",
-      location: "Edmonton, AB",
-      description: "Conducted research on privacy-preserving machine learning techniques and implemented proof-of-concept solutions.",
-      tags: ["AI/ML", "Privacy-Preserving ML", "FHE", "Python"],
+      workType: "Internship",
+      jobTitle: "Field Engineering Student",
+      companyName: "PCL Construction",
+      location: "Edmonton, AB, Canada",
+      description:
+        "Automated daily site workflows, reducing report preparation time from ~3 hours to ~15 minutes and improving field efficiency. Produced 100+ technical reports and improved field documentation via Digital Bluebeam/ACC integration.",
+      tags: ["Construction", "Automation", "Field Work", "Reporting"],
+    },
+    {
+      yearStart: "2023",
+      yearEnd: "2023",
+      monthStart: "May",
+      monthEnd: "December",
+      workType: "R&D Internship",
+      jobTitle: "R&D Mechanical Engineering Intern",
+      companyName: "Beyond Energy",
+      location: "Calgary, AB, Canada",
+      description:
+        "Engineered a full-scale flow loop system with AI choke control and authored safety/operation manuals for testing and deployment. Automated well data migration and patent tracking using Python, reducing >100-hour tasks to under 3 hours; integrated control logic with TIA Portal and MongoDB.",
+      tags: ["R&D", "Python", "Automation", "Control Systems", "MongoDB"],
     },
     {
       yearStart: "2022",
-      yearEnd: "2023",
-      monthStart: "May",
-      monthEnd: "August",
-      workType: "Summer Internship",
-      jobTitle: "Mechanical Engineering Intern",
-      companyName: "Engineering Firm",
-      location: "Calgary, AB",
-      description: "Developed CAD models and performed structural analysis for various engineering projects.",
-      tags: ["CAD", "FEA", "SolidWorks", "Engineering"],
-    },
-    {
-      yearStart: "2021",
       yearEnd: "2022",
-      monthStart: "September",
-      monthEnd: "April",
+      monthStart: "May",
+      monthEnd: "December",
       workType: "Co-op",
-      jobTitle: "Field Engineer",
-      companyName: "Construction Company",
-      location: "Vancouver, BC",
-      description: "Managed on-site operations and coordinated with multiple teams to ensure project completion.",
-      tags: ["Project Management", "Field Work", "Construction"],
+      jobTitle: "Mechanical Engineering Student",
+      companyName: "NCS Multistage",
+      location: "Calgary, AB, Canada",
+      description:
+        "Designed a Tesla Valve regulator improving diodicity by 70% and optimized flow control for water-flooding. Developed an Excel/VBA calculator for regulator selection, saving 10+ hours per deployment.",
+      tags: ["Hydraulic Design", "Excel / VBA", "Design", "Manufacturing"],
     },
   ];
 
@@ -302,16 +306,16 @@ export default function WorkExperience() {
                       </div>
 
                       {/* Main Content */}
-                      <div className="mb-4 sm:mb-6">
-                        <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-1 sm:mb-2">
+                      <div className="mb-3 sm:mb-4">
+                        <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-1">
                           {experience.jobTitle}
                         </h3>
-                        <p className="text-base sm:text-lg text-foreground/80 mb-3 sm:mb-4">
+                        <p className="text-base sm:text-lg text-foreground/80 mb-2 sm:mb-3">
                           {experience.companyName}
                         </p>
 
                         {/* Metadata Row */}
-                        <div className="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm text-foreground/70 mb-4 sm:mb-6">
+                        <div className="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm text-foreground/70 mb-3 sm:mb-4">
                           <div className="flex items-center gap-1.5">
                             <svg
                               className="w-4 h-4"
@@ -356,20 +360,21 @@ export default function WorkExperience() {
                         </div>
 
                         {/* Description */}
-                        <p className="text-sm sm:text-base text-foreground/80 leading-relaxed pl-4 sm:pl-6 border-l-2 border-default-300">
+                        <p className="text-sm sm:text-base text-foreground/80 leading-relaxed pl-4 sm:pl-5 border-l-2 border-[#695336]/30">
                           {experience.description}
                         </p>
                       </div>
 
                       {/* Divider */}
-                      <div className="border-t border-default-200 my-4 sm:my-6"></div>
+                      <div className="border-t border-default-200 my-3 sm:my-4"></div>
 
                       {/* Tags */}
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
                         {experience.tags.map((tag, tagIndex) => (
                           <span
                             key={tagIndex}
-                            className="px-3 py-1 text-xs bg-default-200 text-foreground/80 rounded-full"
+                            className="px-2.5 py-1 text-xs bg-[#695336]/10 text-[#695336] dark:bg-[#695336]/20 dark:text-[#d4c4b0] rounded-full font-medium"
+                            aria-label={`Tag: ${tag}`}
                           >
                             {tag}
                           </span>
