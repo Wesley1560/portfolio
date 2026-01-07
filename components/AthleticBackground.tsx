@@ -17,34 +17,34 @@ export default function AthleticBackground() {
       date: "Present Day",
       description:
         "Pursuing elite bobsled competition while remaining active in high-performance athletics, aiming for Team Canada selection.",
-      image: "/athletics/present-day-bobsled.jpg",
+      image: "/athletics/presentday_photo.jpeg",
     },
     {
       date: "August 2025",
       description: "National Champion at the Canada Summer Games.",
-      image: "/athletics/canada-summer-games-2025.jpg",
+      image: "/athletics/august2025_photo.jpeg",
     },
     {
       date: "July 2025",
       description:
         "Selected for Team Canada in track and field and served as team captain at the FISU Rhine-Ruhr World Games.",
-      image: "/athletics/fisu-rhine-ruhr-2025.jpg",
+      image: "/athletics/july2025_photo.jpeg",
     },
     {
       date: "March 2025",
       description: "Silver medalist at the USports National Championships.",
-      image: "/athletics/usports-nationals-2025.jpg",
+      image: "/athletics/march2025_photo.jpeg",
     },
     {
       date: "February 2024",
       description: "Gold medalist at the CanWest Championships.",
-      image: "/athletics/canwest-championships-2024.jpg",
+      image: "/athletics/feb_2024_photo.jpeg",
     },
     {
       date: "2017–2020",
       description:
         "High school basketball captain and multi-time city and provincial champion in track and field.",
-      image: "/athletics/high-school-athletics-2017-2020.jpg",
+      image: "/athletics/2017-2020_photo.jpeg",
     },
   ];
 
