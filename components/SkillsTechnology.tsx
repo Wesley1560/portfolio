@@ -91,8 +91,8 @@ export default function SkillsTechnology() {
     };
 
     const filename = iconMap[skillName];
-    // Flip the theme logic: use dark logos for dark mode, light logos for light mode
-    const logoTheme = theme === "dark" ? "dark" : "light";
+    // Use appropriate logos for each theme - light logos for dark theme, dark logos for light theme
+    const logoTheme = theme === "dark" ? "light" : "dark";
     return filename ? `/${logoTheme}_logos/${filename}` : null;
   };
 
@@ -773,7 +773,7 @@ export default function SkillsTechnology() {
                                 src={getIconPath(skill.name)!}
                                 alt={`${skill.name} icon`}
                                 fill
-                                className="object-contain"
+                                className={`object-contain ${theme === 'light' ? 'invert' : ''}`}
                               />
                             ) : (
                               <div className="text-3xl sm:text-4xl md:text-5xl">
