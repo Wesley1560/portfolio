@@ -49,8 +49,6 @@ export default function SkillsTechnology() {
             projects: [
               "FEA analysis of Boeing 747-8 fuel placement optimization",
               "Automation of gear selection for MECE 360 (heavy-duty EV transmission)",
-              "Neural Network from scratch",
-              "Chess & chess engine",
             ],
             experience: [
               "Automated well data migration and patent tracking at Beyond Energy",
