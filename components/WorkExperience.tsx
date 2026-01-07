@@ -114,13 +114,10 @@ export default function WorkExperience() {
     setIsTransitioning(true);
   }, [activeTab]);
 
-  // Determine cards per view based on screen size and data length
+  // Determine cards per view based on screen size
   useEffect(() => {
     const updateCardsPerView = () => {
-      if (activeData.length === 1) {
-        // Always show 1 card when there's only one item
-        setCardsPerView(1);
-      } else if (window.innerWidth >= 1024) {
+      if (window.innerWidth >= 1024) {
         setCardsPerView(2);
       } else {
         setCardsPerView(1);
@@ -130,7 +127,7 @@ export default function WorkExperience() {
     updateCardsPerView();
     window.addEventListener("resize", updateCardsPerView);
     return () => window.removeEventListener("resize", updateCardsPerView);
-  }, [activeData.length]);
+  }, []);
 
   // Calculate max index based on cards per view
   const maxIndex = Math.max(0, activeData.length - cardsPerView);
@@ -305,7 +302,9 @@ export default function WorkExperience() {
                 {activeData.map((experience, index) => (
                   <div
                     key={index}
-                    className="flex-shrink-0 px-2 sm:px-3 flex"
+                    className={`flex-shrink-0 px-2 sm:px-3 flex ${
+                      activeData.length === 1 && cardsPerView === 2 ? 'justify-center' : ''
+                    }`}
                     style={{ width: `${100 / cardsPerView}%` }}
                   >
                     <div className="bg-content1 rounded-lg p-6 sm:p-8 border border-default-200 shadow-sm hover:shadow-md transition-all duration-200 w-full flex flex-col">
