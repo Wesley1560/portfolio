@@ -615,8 +615,8 @@ export default function Education() {
         </div>
 
         {/* Toggle Buttons */}
-        <div className="flex flex-col mb-8">
-          <div className="flex gap-3">
+        <div className="flex flex-col items-center mb-8">
+          <div className="flex gap-3 justify-center">
             <button
               onClick={() => setActiveTab("capstone")}
               className={`px-4 py-3 rounded-lg transition-all duration-200 ${
