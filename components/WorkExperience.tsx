@@ -302,12 +302,14 @@ export default function WorkExperience() {
                 {activeData.map((experience, index) => (
                   <div
                     key={index}
-                    className={`flex-shrink-0 px-2 sm:px-3 flex ${
-                      activeData.length === 1 && cardsPerView === 2 ? 'justify-center' : ''
-                    }`}
+                    className="flex-shrink-0 px-2 sm:px-3 flex"
                     style={{ width: `${100 / cardsPerView}%` }}
                   >
-                    <div className="bg-content1 rounded-lg p-6 sm:p-8 border border-default-200 shadow-sm hover:shadow-md transition-all duration-200 w-full flex flex-col">
+                    <div className={`bg-content1 rounded-lg p-6 sm:p-8 border border-default-200 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col ${
+                      activeData.length === 1 && cardsPerView === 2
+                        ? 'w-full max-w-md mx-auto'
+                        : 'w-full'
+                    }`}>
                       {/* Top Row */}
                       <div className="flex justify-between items-start mb-4 sm:mb-6">
                         <div className="flex items-center gap-2 text-sm sm:text-base text-foreground/70">
