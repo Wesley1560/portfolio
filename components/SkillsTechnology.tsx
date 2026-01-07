@@ -91,7 +91,9 @@ export default function SkillsTechnology() {
     };
 
     const filename = iconMap[skillName];
-    return filename ? `/${theme}_logos/${filename}` : null;
+    // Flip the theme logic: use dark logos for dark mode, light logos for light mode
+    const logoTheme = theme === "dark" ? "dark" : "light";
+    return filename ? `/${logoTheme}_logos/${filename}` : null;
   };
 
   // Skills data organized by fixed sections
