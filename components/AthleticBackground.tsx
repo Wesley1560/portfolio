@@ -17,34 +17,34 @@ export default function AthleticBackground() {
       date: "Present Day",
       description:
         "Pursuing elite bobsled competition while remaining active in high-performance athletics, aiming for Team Canada selection.",
-      image: "/api/placeholder/400/300", // Placeholder - replace with actual images
+      image: "/athletics/present-day-bobsled.jpg",
     },
     {
       date: "August 2025",
       description: "National Champion at the Canada Summer Games.",
-      image: "/api/placeholder/400/300",
+      image: "/athletics/canada-summer-games-2025.jpg",
     },
     {
       date: "July 2025",
       description:
         "Selected for Team Canada in track and field and served as team captain at the FISU Rhine-Ruhr World Games.",
-      image: "/api/placeholder/400/300",
+      image: "/athletics/fisu-rhine-ruhr-2025.jpg",
     },
     {
       date: "March 2025",
       description: "Silver medalist at the USports National Championships.",
-      image: "/api/placeholder/400/300",
+      image: "/athletics/usports-nationals-2025.jpg",
     },
     {
       date: "February 2024",
       description: "Gold medalist at the CanWest Championships.",
-      image: "/api/placeholder/400/300",
+      image: "/athletics/canwest-championships-2024.jpg",
     },
     {
       date: "2017–2020",
       description:
         "High school basketball captain and multi-time city and provincial champion in track and field.",
-      image: "/api/placeholder/400/300",
+      image: "/athletics/high-school-athletics-2017-2020.jpg",
     },
   ];
 
@@ -166,7 +166,7 @@ export default function AthleticBackground() {
                           <img
                             src={entry.image}
                             alt={entry.description}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover object-center"
                             onError={(e) => {
                               // Fallback to gradient if image fails to load
                               (e.target as HTMLImageElement).style.display =
