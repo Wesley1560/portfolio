@@ -176,7 +176,47 @@ export default function Education() {
   }, []);
 
   const renderGraph = (yearData: YearData, index: number) => {
-    const courses = yearData.courses;
+    // Combine A/B course pairs - use B course grade and credits, remove A/B suffix from name
+    const combineABCourses = (courses: CourseData[]): CourseData[] => {
+      const combinedCourses: CourseData[] = [];
+      const processedPairs = new Set<string>();
+
+      courses.forEach(course => {
+        // Check if this is part of an A/B pair
+        const baseName = course.name.replace(/[AB]$/, '');
+
+        if (course.name.endsWith('A')) {
+          // Find the corresponding B course
+          const bCourse = courses.find(c => c.name === baseName + 'B');
+          if (bCourse) {
+            // Use B course data with combined name (remove A/B suffix)
+            combinedCourses.push({
+              ...bCourse,
+              name: baseName, // Remove A/B suffix
+              fullName: bCourse.fullName.replace(/[AB]: /, ': ') // Remove A/B from tooltip
+            });
+            processedPairs.add(baseName);
+          }
+        } else if (course.name.endsWith('B')) {
+          // Skip B courses that were already processed as part of A/B pairs
+          if (!processedPairs.has(baseName)) {
+            // B course without A counterpart - just remove B suffix
+            combinedCourses.push({
+              ...course,
+              name: baseName,
+              fullName: course.fullName.replace('B: ', ': ')
+            });
+          }
+        } else {
+          // Regular course without A/B
+          combinedCourses.push(course);
+        }
+      });
+
+      return combinedCourses;
+    };
+
+    const courses = combineABCourses(yearData.courses);
     const width = 1000; // Decreased from 1200 for less horizontal stretch
     const height = 400; // Increased from 350 for better vertical readability
     const padding = { top: 50, right: 80, bottom: 100, left: 70 };
@@ -225,8 +265,9 @@ export default function Education() {
     
     // Calculate animation-based path and visible points
     const totalPathLength = points.length - 1;
-    const visiblePointIndex = Math.floor(animationProgress * totalPathLength);
-    const visiblePoints = isAnimating 
+    // Use Math.ceil to ensure smoother progression and prevent the last point from lagging
+    const visiblePointIndex = Math.min(totalPathLength, Math.ceil(animationProgress * totalPathLength));
+    const visiblePoints = isAnimating
       ? points.slice(0, visiblePointIndex + 1)
       : points;
     
