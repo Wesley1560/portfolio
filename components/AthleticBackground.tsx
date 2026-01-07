@@ -73,6 +73,17 @@ export default function AthleticBackground() {
           entries.forEach((entry) => {
             if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
               setActiveIndex(index);
+              // Auto-show popup when scrolling to this entry
+              if (selectedImage !== timelineEntries[index].image) {
+                handleImageClick(timelineEntries[index].image, {
+                  currentTarget: entry.target as HTMLDivElement,
+                } as React.MouseEvent<HTMLDivElement>);
+              }
+            } else if (!entry.isIntersecting) {
+              // Close popup when scrolling away from this entry
+              if (selectedImage === timelineEntries[index].image) {
+                closePopout();
+              }
             }
           });
         },
