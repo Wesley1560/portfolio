@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 type SkillUsage = {
   projects: string[];
@@ -25,6 +26,7 @@ type FilterType = "all" | "education" | "projects" | "experience" | "extracurric
 export default function SkillsTechnology() {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const [expandedSkill, setExpandedSkill] = useState<Skill | null>(null);
+  const [theme, setTheme] = useState<"light" | "dark">("dark");
   const [overlayPosition, setOverlayPosition] = useState<{
     x: number;
     y: number;
@@ -36,6 +38,61 @@ export default function SkillsTechnology() {
   } | null>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+
+  // Theme detection
+  useEffect(() => {
+    const htmlElement = document.documentElement;
+    const currentTheme = htmlElement.classList.contains("dark") ? "dark" : "light";
+    setTheme(currentTheme);
+
+    // Listen for theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === "class") {
+          const newTheme = htmlElement.classList.contains("dark") ? "dark" : "light";
+          setTheme(newTheme);
+        }
+      });
+    });
+
+    observer.observe(htmlElement, {
+      attributes: true,
+      attributeFilter: ["class"]
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Icon mapping - skill name to icon filename
+  const getIconPath = (skillName: string) => {
+    const iconMap: Record<string, string> = {
+      "Python": "python.png",
+      "VBA for Excel": "python.png", // Using python icon as placeholder
+      "HTML": "python.png", // Using python icon as placeholder
+      "MATLAB": "MATLAB.png",
+      "MathCAD": "MathCAD.png",
+      "ROS": "python.png", // Using python icon as placeholder
+      "JSON / MQL": "JSON.png",
+      "Git": "GIT.png",
+      "Leadership": "leadership.png",
+      "Team Working": "team_working.png",
+      "Intercompany Communication": "intercompany_communicaiton.png",
+      "Project Management": "project_management.png",
+      "Communication": "communication.png",
+      "Time Management": "time_management.png",
+      "Presenting": "presenting.png",
+      "Technical Writing": "technical_writing.png",
+      "Autodesk Inventor": "Autodesk_Inventor.png",
+      "SolidWorks": "solidworks.png",
+      "Onshape": "onshape.png",
+      "ANSYS APDL": "Ansys.png",
+      "Fusion 360": "fusion360.png",
+      "LaTeX": "LaTeX.png",
+    };
+
+    const filename = iconMap[skillName];
+    return filename ? `/${theme}_logos/${filename}` : null;
+  };
 
   // Skills data organized by fixed sections
   const skillSections: SkillSection[] = [
@@ -174,7 +231,7 @@ export default function SkillsTechnology() {
               "Boeing 747-8 Fuel Placement FEA",
             ],
             experience: [
-              "R&D Intern — Beyond Energy",
+              "R&D Mechanical Engineer Intern — Beyond Energy",
               "Field Engineer — PCL Construction",
               "Mechanical Engineering Student — NCS Multistage",
             ],
@@ -192,7 +249,7 @@ export default function SkillsTechnology() {
             projects: ["Capstone Robotic Arm"],
             experience: [
               "Mechanical Engineer — NEX Valve",
-              "R&D Intern — Beyond Energy",
+              "R&D Mechanical Engineer Intern — Beyond Energy",
             ],
             education: [],
             extracurricular: [
@@ -213,7 +270,7 @@ export default function SkillsTechnology() {
             experience: [
               "Mechanical Engineer — NEX Valve",
               "Field Engineer — PCL Construction",
-              "R&D Intern — Beyond Energy",
+              "R&D Mechanical Engineer Intern — Beyond Energy",
               "Mechanical Engineering Student — NCS Multistage",
             ],
             education: ["University of Alberta — BSc Mechanical Engineering"],
@@ -231,7 +288,7 @@ export default function SkillsTechnology() {
             ],
             experience: [
               "Field Engineer — PCL Construction",
-              "R&D Intern — Beyond Energy",
+              "R&D Mechanical Engineer Intern — Beyond Energy",
               "Mechanical Engineering Student — NCS Multistage",
             ],
             education: ["University of Alberta — BSc Mechanical Engineering"],
@@ -253,7 +310,7 @@ export default function SkillsTechnology() {
             experience: [
               "Mechanical Engineer — NEX Valve",
               "Field Engineer — PCL Construction",
-              "R&D Intern — Beyond Energy",
+              "R&D Mechanical Engineer Intern — Beyond Energy",
               "Mechanical Engineering Student — NCS Multistage",
             ],
             education: ["University of Alberta — BSc Mechanical Engineering"],
@@ -300,7 +357,7 @@ export default function SkillsTechnology() {
             experience: [
               "Mechanical Engineer — NEX Valve",
               "Field Engineer — PCL Construction",
-              "R&D Intern — Beyond Energy",
+              "R&D Mechanical Engineer Intern — Beyond Energy",
               "Mechanical Engineering Student — NCS Multistage",
             ],
             education: ["University of Alberta — BSc Mechanical Engineering"],
@@ -317,7 +374,7 @@ export default function SkillsTechnology() {
           icon: "🔧",
           usage: {
             projects: [],
-            experience: ["R&D Intern — Beyond Energy"],
+            experience: ["R&D Mechanical Engineer Intern — Beyond Energy"],
             education: [],
             extracurricular: [],
           },
@@ -708,8 +765,19 @@ export default function SkillsTechnology() {
                           </div>
 
                           {/* Icon - Center Top */}
-                          <div className="text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4">
-                            {skill.icon}
+                          <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mb-3 sm:mb-4 relative flex items-center justify-center">
+                            {getIconPath(skill.name) ? (
+                              <Image
+                                src={getIconPath(skill.name)!}
+                                alt={`${skill.name} icon`}
+                                fill
+                                className="object-contain"
+                              />
+                            ) : (
+                              <div className="text-3xl sm:text-4xl md:text-5xl">
+                                {skill.icon}
+                              </div>
+                            )}
                           </div>
 
                           {/* Skill Name */}

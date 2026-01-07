@@ -4,8 +4,18 @@ import { portfolioContent } from "@/lib/content";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: `${portfolioContent.basicInfo.fullName} - ${portfolioContent.basicInfo.currentRole}`,
-  description: portfolioContent.oneLinePositioning,
+  title: "Wesley Eze's Portfolio",
+  description: "Mechanical Engineer | Robotics, Automation, Rapid Prototyping. Specializing in design engineering, CAD/CAM, and innovative manufacturing solutions.",
+  openGraph: {
+    title: "Wesley Eze's Portfolio",
+    description: "Mechanical Engineer | Robotics, Automation, Rapid Prototyping. Specializing in design engineering, CAD/CAM, and innovative manufacturing solutions.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Wesley Eze's Portfolio",
+    description: "Mechanical Engineer | Robotics, Automation, Rapid Prototyping. Specializing in design engineering, CAD/CAM, and innovative manufacturing solutions.",
+  },
 };
 
 export default function RootLayout({

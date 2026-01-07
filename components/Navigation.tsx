@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function Navigation() {
   const [mounted, setMounted] = useState(false);
@@ -44,6 +45,18 @@ export default function Navigation() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-black border-b border-gray-200 dark:border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex items-center justify-between h-14 sm:h-16">
+          {/* Left side - Logo */}
+          <div className="flex items-center">
+            <div className="w-8 h-8 sm:w-10 sm:h-10 relative flex items-center justify-center">
+              <Image
+                src={theme === "dark" ? "/website_logo/wesley_eze_monogram_logo_light.png" : "/website_logo/wesley_eze_monogram_logo_dark.png"}
+                alt="Wesley Eze Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </div>
+
           {/* Navigation Buttons - Centered */}
           <div className="flex-1 flex items-center justify-center">
             <div className="hidden md:flex items-center gap-2 lg:gap-4">
@@ -71,14 +84,9 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Right side - Logo and Theme Toggle */}
-          <div className="flex items-center gap-3 sm:gap-4">
-            {/* Logo placeholder - replace with actual logo image */}
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-900 dark:bg-white flex items-center justify-center">
-              <span className="text-white dark:text-gray-900 text-xs sm:text-sm font-semibold">
-                WE
-              </span>
-            </div>
+          {/* Right side - Theme Toggle */}
+          <div className="flex items-center">
+            {/* Theme Toggle */}
 
             {/* Theme Toggle */}
             {mounted && (
