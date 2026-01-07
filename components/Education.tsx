@@ -527,11 +527,11 @@ export default function Education() {
                   Achievements
                 </h4>
               </div>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1.5 text-xs sm:text-sm bg-[#695336]/10 text-[#695336] rounded-full font-medium">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                <span className="px-2.5 py-1 text-xs bg-[#695336]/10 text-[#695336] dark:bg-[#695336]/20 dark:text-[#d4c4b0] rounded-full font-medium">
                   3x Academic All-Canadian
                 </span>
-                <span className="px-3 py-1.5 text-xs sm:text-sm bg-[#695336]/10 text-[#695336] rounded-full font-medium">
+                <span className="px-2.5 py-1 text-xs bg-[#695336]/10 text-[#695336] dark:bg-[#695336]/20 dark:text-[#d4c4b0] rounded-full font-medium">
                   Graduated with Distinction
                 </span>
               </div>
