@@ -1,16 +1,24 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
 
 type TimelineEntry = {
   date: string;
   description: string;
-  image: string; // Placeholder image path
+  image: string;
 };
 
 export default function AthleticBackground() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [popoutPosition, setPopoutPosition] = useState<{
+    x: number;
+    y: number;
+    position: "above" | "below";
+  } | null>(null);
   const entriesRef = useRef<(HTMLDivElement | null)[]>([]);
+  const popoutRef = useRef<HTMLDivElement>(null);
 
   const timelineEntries: TimelineEntry[] = [
     {
@@ -76,6 +84,92 @@ export default function AthleticBackground() {
       });
     };
   }, []);
+
+  // Handle image click
+  const handleImageClick = (imageSrc: string, event: React.MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const cardCenterY = rect.top + rect.height / 2;
+    const isInTopHalf = cardCenterY < viewportHeight / 2;
+    
+    // Calculate popout dimensions (maintain aspect ratio, max width 90vw or 600px)
+    const maxWidth = Math.min(window.innerWidth * 0.9, 600);
+    const aspectRatio = 4 / 3; // Original aspect ratio
+    const popoutWidth = maxWidth;
+    const popoutHeight = popoutWidth / aspectRatio;
+    
+    // Calculate X position (center on screen)
+    const popoutX = (window.innerWidth - popoutWidth) / 2;
+    
+    // Calculate Y position
+    let popoutY: number;
+    const gap = 16;
+    if (isInTopHalf) {
+      // Position below the card
+      popoutY = rect.bottom + gap;
+      // Ensure it doesn't go off bottom
+      if (popoutY + popoutHeight > viewportHeight - gap) {
+        popoutY = viewportHeight - popoutHeight - gap;
+      }
+    } else {
+      // Position above the card
+      popoutY = rect.top - popoutHeight - gap;
+      // Ensure it doesn't go off top
+      if (popoutY < gap) {
+        popoutY = gap;
+      }
+    }
+    
+    setPopoutPosition({
+      x: popoutX,
+      y: popoutY,
+      position: isInTopHalf ? "below" : "above",
+    });
+    setSelectedImage(imageSrc);
+  };
+
+  // Close popout
+  const closePopout = () => {
+    setSelectedImage(null);
+    setPopoutPosition(null);
+  };
+
+  // Handle click outside and scroll
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        popoutRef.current &&
+        !popoutRef.current.contains(event.target as Node) &&
+        selectedImage
+      ) {
+        closePopout();
+      }
+    };
+
+    const handleScroll = () => {
+      if (selectedImage) {
+        closePopout();
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && selectedImage) {
+        closePopout();
+      }
+    };
+
+    if (selectedImage) {
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleEscape);
+      window.addEventListener("scroll", handleScroll, true);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+      window.removeEventListener("scroll", handleScroll, true);
+    };
+  }, [selectedImage]);
 
   return (
     <section className="w-full bg-background py-16 sm:py-20 md:py-24">
@@ -152,9 +246,10 @@ export default function AthleticBackground() {
                         isEven ? "md:order-first" : ""
                       }`}
                     >
-                      {/* Image */}
+                      {/* Image - Clickable */}
                       <div
-                        className={`relative overflow-hidden rounded-lg transition-all duration-700 ${
+                        onClick={(e) => handleImageClick(entry.image, e)}
+                        className={`relative overflow-hidden rounded-lg transition-all duration-700 cursor-pointer hover:shadow-lg ${
                           activeIndex === index
                             ? "opacity-100 translate-y-0 translate-x-0"
                             : isEven
@@ -163,22 +258,19 @@ export default function AthleticBackground() {
                         }`}
                       >
                         <div className="aspect-[4/3] bg-default-200 relative">
-                          <img
-                            src={entry.image}
-                            alt={entry.description}
-                            className="w-full h-full object-cover object-center"
-                            onError={(e) => {
-                              // Fallback to gradient if image fails to load
-                              (e.target as HTMLImageElement).style.display =
-                                "none";
-                            }}
-                          />
-                          {/* Placeholder gradient if image doesn't load */}
+                          {/* Placeholder gradient - BEHIND the image */}
                           <div className="absolute inset-0 bg-gradient-to-br from-default-300 to-default-400 flex items-center justify-center">
                             <span className="text-foreground/60 text-sm">
                               {entry.date}
                             </span>
                           </div>
+                          {/* Image - ON TOP of placeholder */}
+                          <Image
+                            src={entry.image}
+                            alt={entry.description}
+                            fill
+                            className="object-cover object-center"
+                          />
                         </div>
                       </div>
 
@@ -200,6 +292,31 @@ export default function AthleticBackground() {
           </div>
         </div>
       </div>
+
+      {/* Image Popout */}
+      {selectedImage && popoutPosition && (
+        <div
+          ref={popoutRef}
+          className="fixed z-50"
+          style={{
+            left: `${popoutPosition.x}px`,
+            top: `${popoutPosition.y}px`,
+            maxWidth: "90vw",
+            width: "600px",
+          }}
+        >
+          <div className="bg-content1 rounded-lg shadow-2xl overflow-hidden border border-default-200">
+            <div className="aspect-[4/3] relative">
+              <Image
+                src={selectedImage}
+                alt="Expanded view"
+                fill
+                className="object-cover object-center"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
