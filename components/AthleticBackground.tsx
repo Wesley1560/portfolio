@@ -75,16 +75,16 @@ export default function AthleticBackground() {
               setActiveIndex(index);
               // Auto-show popup when scrolling to this entry
               if (selectedImage !== timelineEntries[index].image) {
+                // Close any existing popup before opening a new one
+                if (selectedImage) {
+                  closePopout();
+                }
                 handleImageClick(timelineEntries[index].image, {
                   currentTarget: entry.target as HTMLDivElement,
                 } as React.MouseEvent<HTMLDivElement>);
               }
-            } else if (!entry.isIntersecting) {
-              // Close popup when scrolling away from this entry
-              if (selectedImage === timelineEntries[index].image) {
-                closePopout();
-              }
             }
+            // Remove the aggressive closing logic - only close when a new popup opens
           });
         },
         {
