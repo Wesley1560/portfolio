@@ -529,10 +529,10 @@ export default function Education() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-1.5 text-xs sm:text-sm bg-[#695336]/10 text-[#695336] rounded-full font-medium">
-                  2x Academic All-Canadian
+                  3x Academic All-Canadian
                 </span>
                 <span className="px-3 py-1.5 text-xs sm:text-sm bg-[#695336]/10 text-[#695336] rounded-full font-medium">
-                  Rosenburg Award Recipient
+                  Graduated with Distinction
                 </span>
               </div>
             </div>
@@ -577,17 +577,20 @@ export default function Education() {
             <div 
               className="bg-content1 rounded-lg p-6 sm:p-8 border border-default-200 shadow-sm hover:shadow-md transition-all duration-200"
             >
-            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-4">
+            <h3 className="text-xl sm:text-2xl font-semibold text-foreground mb-2">
               Capstone Project
             </h3>
             
             {/* Header */}
-            <h4 className="text-lg sm:text-xl font-medium text-foreground mb-4">
-              9-axis robotic arm for dataset generation
+            <h4 className="text-lg sm:text-xl font-medium text-foreground mb-1">
+              Robotic Arm for Advanced Dataset Generation
             </h4>
+            <p className="text-sm sm:text-base text-foreground/60 mb-4">
+              Fabri Sciences Inc. — wound3.com
+            </p>
             
             {/* Metadata row */}
-            <div className="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm text-gray-600 dark:text-gray-600 mb-4">
+            <div className="flex flex-wrap gap-4 sm:gap-6 text-xs sm:text-sm text-foreground/70 mb-4">
               <div className="flex items-center gap-1.5">
                 <svg
                   className="w-4 h-4"
@@ -602,7 +605,7 @@ export default function Education() {
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                   />
                 </svg>
-                <span>2025</span>
+                <span>January – April 2025</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <svg
@@ -612,75 +615,81 @@ export default function Education() {
                 >
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
-                <span className="font-medium">9.6 / 10</span>
+                <span className="font-medium">Grade: 9.6 / 10</span>
               </div>
             </div>
             
             {/* Project description */}
-            <p className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-6 line-clamp-3">
-              Developed a sophisticated 9-axis robotic arm system designed for automated dataset generation in machine learning applications. The project integrated advanced control systems, computer vision, and data processing capabilities to create a comprehensive solution for research and industrial applications.
+            <p className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-5 pl-4 border-l-2 border-[#695336]/30">
+              Led a 6-person engineering team to design and prototype a 6-axis robotic arm with 3-axis gantry system for automated data collection. Successfully deployed in operational use for wound imaging research.
             </p>
             
-            {/* Key Contributions */}
-            <div className="mb-6">
+            {/* Key Achievements */}
+            <div className="mb-5">
               <h5 className="text-sm sm:text-base font-semibold text-foreground mb-3">
-                Key Contributions
+                Key Achievements
               </h5>
               <ul className="space-y-2 text-sm sm:text-base text-foreground/80">
                 <li className="flex items-start gap-2">
                   <svg
                     className="w-2.5 h-2.5 mt-2 flex-shrink-0"
-                    fill="#ef4444"
+                    fill="#695336"
                     viewBox="0 0 8 8"
                   >
                     <path d="M0 0L8 4L0 8Z" />
                   </svg>
-                  <span>Designed and implemented control algorithms for precise multi-axis coordination</span>
+                  <span>Designed 9-axis motion system (6-axis arm + 3-axis gantry) for precise positioning</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg
                     className="w-2.5 h-2.5 mt-2 flex-shrink-0"
-                    fill="#ef4444"
+                    fill="#695336"
                     viewBox="0 0 8 8"
                   >
                     <path d="M0 0L8 4L0 8Z" />
                   </svg>
-                  <span>Developed computer vision pipeline for real-time object detection and tracking</span>
+                  <span>Managed team of 6 engineers through full design-to-deployment lifecycle</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg
                     className="w-2.5 h-2.5 mt-2 flex-shrink-0"
-                    fill="#ef4444"
+                    fill="#695336"
                     viewBox="0 0 8 8"
                   >
                     <path d="M0 0L8 4L0 8Z" />
                   </svg>
-                  <span>Created automated data collection and annotation system with quality assurance</span>
+                  <span>Delivered operational prototype now in active use for medical imaging research</span>
                 </li>
               </ul>
             </div>
             
             {/* Bold statement */}
-            <p className="text-sm sm:text-base font-semibold text-foreground mb-6">
-              Presented research findings to 110+ attendees at the University Conference.
+            <p className="text-sm sm:text-base font-semibold text-foreground mb-5">
+              Presented research findings to 110+ attendees at the University of Alberta Engineering Conference.
             </p>
             
             {/* Divider */}
-            <div className="border-t border-gray-200 dark:border-gray-200 mb-6"></div>
+            <div className="border-t border-default-200 mb-5"></div>
             
             {/* Tags */}
-            <div className="flex flex-wrap gap-2">
-              <span className="px-3 py-1.5 text-xs sm:text-sm bg-default-200 text-foreground/80 rounded-full">
-                mathematical modelling
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+              <span className="px-2.5 py-1 text-xs bg-[#695336]/10 text-[#695336] dark:bg-[#695336]/20 dark:text-[#d4c4b0] rounded-full font-medium">
+                Robotics
               </span>
-              <span className="px-3 py-1.5 text-xs sm:text-sm bg-default-200 text-foreground/80 rounded-full">
-                conference presentation
+              <span className="px-2.5 py-1 text-xs bg-[#695336]/10 text-[#695336] dark:bg-[#695336]/20 dark:text-[#d4c4b0] rounded-full font-medium">
+                CAD / Onshape
               </span>
-              <span className="px-3 py-1.5 text-xs sm:text-sm bg-default-200 text-foreground/80 rounded-full">
-                independent research
+              <span className="px-2.5 py-1 text-xs bg-[#695336]/10 text-[#695336] dark:bg-[#695336]/20 dark:text-[#d4c4b0] rounded-full font-medium">
+                FEA / ANSYS
               </span>
-              <span className="px-3 py-1.5 text-xs sm:text-sm bg-default-200 text-foreground/80 rounded-full">
-                technical writing
+              <span className="px-2.5 py-1 text-xs bg-[#695336]/10 text-[#695336] dark:bg-[#695336]/20 dark:text-[#d4c4b0] rounded-full font-medium">
+                ROS
+              </span>
+              <span className="px-2.5 py-1 text-xs bg-[#695336]/10 text-[#695336] dark:bg-[#695336]/20 dark:text-[#d4c4b0] rounded-full font-medium">
+                Team Leadership
+              </span>
+              <span className="px-2.5 py-1 text-xs bg-[#695336]/10 text-[#695336] dark:bg-[#695336]/20 dark:text-[#d4c4b0] rounded-full font-medium">
+                Prototyping
               </span>
             </div>
           </div>
