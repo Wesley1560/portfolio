@@ -281,7 +281,7 @@ export default function WorkExperience() {
           <div className="relative">
             <div
               ref={containerRef}
-              className="overflow-hidden relative mx-12 md:mx-16"
+              className="overflow-hidden relative"
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
