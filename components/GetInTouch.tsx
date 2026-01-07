@@ -74,9 +74,12 @@ export default function GetInTouch() {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-8 sm:space-y-10">
-          {/* Form Box */}
-          <div className="bg-content1 rounded-lg p-6 sm:p-8 md:p-10 border border-default-200 shadow-sm">
+        {/* Two-column layout on larger screens */}
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-10">
+            {/* Left Column - Form Box */}
+            <div className="flex-1 lg:max-w-2xl">
+              <div className="bg-content1 rounded-lg p-6 sm:p-8 md:p-10 border border-default-200 shadow-sm">
             <form 
               action="https://formspree.io/f/xlgdqdkn" 
               method="POST"
@@ -254,10 +257,13 @@ export default function GetInTouch() {
                 </div>
               )}
             </form>
-          </div>
+              </div>
+            </div>
 
-          {/* Contact Info Box */}
-          <div className="bg-content1 rounded-lg p-6 sm:p-8 border border-default-200 shadow-sm">
+            {/* Right Column - Contact Info & Social Links */}
+            <div className="lg:w-80 xl:w-96 flex flex-col gap-8 lg:gap-10">
+              {/* Contact Info Box */}
+              <div className="bg-content1 rounded-lg p-6 sm:p-8 border border-default-200 shadow-sm">
             <div className="flex items-center gap-4 sm:gap-5">
               {/* Email Icon */}
               <div className="flex-shrink-0">
@@ -329,6 +335,8 @@ export default function GetInTouch() {
                 </svg>
                 <span>LinkedIn</span>
               </a>
+            </div>
+              </div>
             </div>
           </div>
         </div>
