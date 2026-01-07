@@ -49,8 +49,8 @@ export default function GetInTouch() {
           subject: "",
           message: "",
         });
-        // Hide success message after 5 seconds
-        setTimeout(() => setSubmitSuccess(false), 5000);
+        // Hide success message after 3 seconds
+        setTimeout(() => setSubmitSuccess(false), 3000);
       } else {
         setSubmitError(true);
       }
@@ -78,7 +78,7 @@ export default function GetInTouch() {
           {/* Form Box */}
           <div className="bg-content1 rounded-lg p-6 sm:p-8 md:p-10 border border-default-200 shadow-sm">
             <form 
-              action="https://formspree.io/f/YOUR_FORM_ID" 
+              action="https://formspree.io/f/xlgdqdkn" 
               method="POST"
               onSubmit={handleSubmit} 
               className="space-y-4 sm:space-y-5"
@@ -87,24 +87,6 @@ export default function GetInTouch() {
               <input type="hidden" name="_subject" value="Portfolio Message – New Submission" />
               <input type="hidden" name="_captcha" value="false" />
               <input type="text" name="_gotcha" style={{ display: "none" }} />
-              
-              {/* Success Message */}
-              {submitSuccess && (
-                <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
-                  <p className="text-sm sm:text-base text-green-800 dark:text-green-200 font-medium">
-                    ✓ Message sent successfully. I'll get back to you soon.
-                  </p>
-                </div>
-              )}
-
-              {/* Error Message */}
-              {submitError && (
-                <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
-                  <p className="text-sm sm:text-base text-red-800 dark:text-red-200 font-medium">
-                    ✗ Something went wrong. Please try again or email me directly.
-                  </p>
-                </div>
-              )}
               {/* Name - Required */}
               <div>
                 <label
@@ -227,6 +209,50 @@ export default function GetInTouch() {
                   </svg>
                 )}
               </button>
+
+              {/* Success Message - Inline below button */}
+              {submitSuccess && (
+                <div className="flex items-center gap-2 justify-center mt-3">
+                  <svg
+                    className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <p className="text-sm sm:text-base text-green-600 dark:text-green-400 font-medium">
+                    Message received; will get back to you soon!
+                  </p>
+                </div>
+              )}
+
+              {/* Error Message - Inline below button */}
+              {submitError && (
+                <div className="flex items-center gap-2 justify-center mt-3">
+                  <svg
+                    className="w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                  <p className="text-sm sm:text-base text-red-600 dark:text-red-400 font-medium">
+                    Something went wrong. Please try again.
+                  </p>
+                </div>
+              )}
             </form>
           </div>
 
