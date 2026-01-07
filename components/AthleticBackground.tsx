@@ -18,6 +18,14 @@ export default function AthleticBackground() {
     position: "above" | "below";
   } | null>(null);
   const entriesRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  // Helper function to get object position for timeline images
+  const getObjectPosition = (imageSrc: string) => {
+    if (imageSrc.includes('march2025_photo') || imageSrc.includes('feb_2024_photo')) {
+      return 'object-cover object-top';
+    }
+    return 'object-cover object-center';
+  };
   const popoutRef = useRef<HTMLDivElement>(null);
 
   const timelineEntries: TimelineEntry[] = [
@@ -269,7 +277,7 @@ export default function AthleticBackground() {
                             src={entry.image}
                             alt={entry.description}
                             fill
-                            className="object-cover object-center"
+                            className={getObjectPosition(entry.image)}
                           />
                         </div>
                       </div>
