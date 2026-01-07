@@ -114,10 +114,13 @@ export default function WorkExperience() {
     setIsTransitioning(true);
   }, [activeTab]);
 
-  // Determine cards per view based on screen size
+  // Determine cards per view based on screen size and data length
   useEffect(() => {
     const updateCardsPerView = () => {
-      if (window.innerWidth >= 1024) {
+      if (activeData.length === 1) {
+        // Always show 1 card when there's only one item
+        setCardsPerView(1);
+      } else if (window.innerWidth >= 1024) {
         setCardsPerView(2);
       } else {
         setCardsPerView(1);
@@ -127,7 +130,7 @@ export default function WorkExperience() {
     updateCardsPerView();
     window.addEventListener("resize", updateCardsPerView);
     return () => window.removeEventListener("resize", updateCardsPerView);
-  }, []);
+  }, [activeData.length]);
 
   // Calculate max index based on cards per view
   const maxIndex = Math.max(0, activeData.length - cardsPerView);
