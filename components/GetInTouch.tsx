@@ -80,6 +80,13 @@ export default function GetInTouch() {
             {/* Left Column - Form Box */}
             <div className="flex-1 lg:max-w-2xl">
               <div className="bg-content1 rounded-lg p-6 sm:p-8 md:p-10 border border-default-200 shadow-sm">
+              {/* Intent Statement */}
+              <div className="mb-6 sm:mb-8 text-center">
+                <p className="text-sm sm:text-base text-foreground/80 font-medium">
+                  Open to full-time mechanical engineering roles, robotics roles, and interdisciplinary R&D.
+                </p>
+              </div>
+
             <form 
               action="https://formspree.io/f/xlgdqdkn" 
               method="POST"
