@@ -64,7 +64,12 @@ export default function FeaturedProjects() {
         "Conducted structural analysis and safety validation per CSA and ASTM standards",
         "Delivered client-approved design achieving all performance and safety specifications"
       ],
-      tags: ["Facility Design", "Safety Engineering", "CSA Standards", "Structural Analysis", "Client Delivery"]
+      tags: ["Facility Design", "Safety Engineering", "CSA Standards", "Structural Analysis", "Client Delivery"],
+      link: {
+        url: "https://www.overleaf.com/read/pqkkvhbnvbmd#3eac00",
+        label: "View Project",
+        icon: "paper"
+      }
     },
     {
       title: "MEC E 563 – Aircraft Wing Fuel Placement FEA",
@@ -75,7 +80,12 @@ export default function FeaturedProjects() {
         "Validated analytical models against Boeing 747-8 structural requirements",
         "Optimized fuel tank positioning for minimal weight penalty and maximum safety margins"
       ],
-      tags: ["FEA", "ANSYS", "Aircraft Structures", "Stress Analysis", "Boeing Standards"]
+      tags: ["FEA", "ANSYS", "Aircraft Structures", "Stress Analysis", "Boeing Standards"],
+      link: {
+        url: "https://www.overleaf.com/read/phxrmythcgmd#f26bda",
+        label: "View Project",
+        icon: "paper"
+      }
     }
   ];
 
