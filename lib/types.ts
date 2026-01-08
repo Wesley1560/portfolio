@@ -1,3 +1,10 @@
+export interface Hero {
+  title: string;
+  typingLines: string[];
+  summary: string;
+  status: string;
+}
+
 export interface BasicInfo {
   fullName: string;
   currentRole: string;
@@ -39,6 +46,7 @@ export interface Education {
 }
 
 export interface PortfolioContent {
+  hero: Hero;
   basicInfo: BasicInfo;
   oneLinePositioning: string;
   professionalSummary: string[];

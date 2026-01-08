@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { PortfolioContent, BasicInfo, Project, Skills, Education } from './types';
+import { PortfolioContent, BasicInfo, Project, Skills, Education, Hero } from './types';
 
 function parsePersonalMd(): PortfolioContent {
   const filePath = path.join(process.cwd(), 'PERSONAL.md');
@@ -10,7 +10,10 @@ function parsePersonalMd(): PortfolioContent {
   const content = fs.readFileSync(filePath, 'utf-8');
 
   const lines = content.split('\n');
-  
+
+  // Parse Hero
+  const hero = parseHero(lines);
+
   // Parse Basic Info
   const basicInfo = parseBasicInfo(lines);
   
@@ -33,6 +36,7 @@ function parsePersonalMd(): PortfolioContent {
   const achievements = parseAchievements(lines);
 
   return {
+    hero,
     basicInfo,
     oneLinePositioning,
     professionalSummary,
@@ -93,6 +97,66 @@ function parseBasicInfo(lines: string[]): BasicInfo {
   }
 
   return basicInfo as BasicInfo;
+}
+
+function parseHero(lines: string[]): Hero {
+  const hero: Partial<Hero> = {
+    typingLines: [],
+  };
+
+  let inSection = false;
+  let currentField: keyof Hero | null = null;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+
+    if (line.includes('HERO')) {
+      inSection = true;
+      continue;
+    }
+
+    if (inSection && line.includes('BASIC INFO')) {
+      break;
+    }
+
+    if (!inSection) continue;
+
+    if (line === 'TITLE:') {
+      currentField = 'title';
+    } else if (line === 'TYPING_LINES:') {
+      currentField = 'typingLines';
+    } else if (line === 'SUMMARY:') {
+      currentField = 'summary';
+    } else if (line === 'STATUS:') {
+      currentField = 'status';
+    } else if (currentField === 'title' && line && !line.startsWith('TYPING_LINES:') && !line.startsWith('SUMMARY:') && !line.startsWith('STATUS:')) {
+      if (hero.title) {
+        hero.title += '\n' + line;
+      } else {
+        hero.title = line;
+      }
+    } else if (currentField === 'typingLines' && line && !line.startsWith('SUMMARY:') && !line.startsWith('STATUS:')) {
+      hero.typingLines!.push(line);
+    } else if (currentField === 'summary' && line && !line.startsWith('STATUS:')) {
+      if (hero.summary) {
+        hero.summary += ' ' + line;
+      } else {
+        hero.summary = line;
+      }
+    } else if (currentField === 'status' && line) {
+      if (hero.status) {
+        hero.status += ' ' + line;
+      } else {
+        hero.status = line;
+      }
+    }
+  }
+
+  if (!hero.title || !hero.typingLines || hero.typingLines.length === 0 || !hero.summary || !hero.status) {
+    throw new Error('HERO section is incomplete. All fields (TITLE, TYPING_LINES, SUMMARY, STATUS) are required.');
+  }
+
+  return hero as Hero;
 }
 
 function parseOneLinePositioning(lines: string[]): string {

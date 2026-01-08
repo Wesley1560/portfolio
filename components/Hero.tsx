@@ -1,22 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Hero as HeroType } from "@/lib/types";
 
 interface HeroProps {
-  professionalSummary: string;
+  hero: HeroType;
 }
 
-export default function Hero({ professionalSummary }: HeroProps) {
+export default function Hero({ hero }: HeroProps) {
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const phrases = [
-    "National Level Athlete",
-    "Problem Solver",
-    "Mechanical Engineer",
-    "Competitor",
-  ];
+  const phrases = hero.typingLines;
 
   useEffect(() => {
     const currentPhrase = phrases[currentIndex];
@@ -82,12 +78,11 @@ export default function Hero({ professionalSummary }: HeroProps) {
         <div className="space-y-4 sm:space-y-5 md:space-y-6 text-center">
           {/* Stacked Greeting - Bold with Gradient - Responsive sizing */}
           <div className="space-y-2 sm:space-y-3">
-            <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
-              Hello,
-            </h1>
-            <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-7xl font-bold bg-gradient-to-r from-[#c9b8a8] via-[#a89a8d] to-[#695336] bg-clip-text text-transparent leading-[1.4] pb-2 sm:pb-3">
-              I'm Wesley
-            </h1>
+            {hero.title.split('\n').map((line, index) => (
+              <h1 key={index} className={`text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-7xl font-bold leading-tight ${index === 0 ? 'text-gray-900 dark:text-white' : 'bg-gradient-to-r from-[#c9b8a8] via-[#a89a8d] to-[#695336] bg-clip-text text-transparent pb-2 sm:pb-3'}`}>
+                {line}
+              </h1>
+            ))}
           </div>
 
           {/* Typing Effect - Directly below greeting */}
@@ -102,14 +97,14 @@ export default function Hero({ professionalSummary }: HeroProps) {
           <p
             className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-gray-600 dark:text-gray-400 font-light leading-relaxed max-w-3xl mx-auto"
             dangerouslySetInnerHTML={{
-              __html: highlightKeywords("DEBUG: HERO TEXT SOURCE CONFIRMED"),
+              __html: highlightKeywords(hero.summary),
             }}
           />
         </div>
 
         {/* Seeking Employment - One line of space after summary */}
         <p className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-green-600 dark:text-green-400 font-medium mt-4 sm:mt-5 md:mt-6">
-          Seeking full-time employment
+          {hero.status}
         </p>
 
         {/* Scroll Down - 3 lines below seeking employment */}

@@ -3,6 +3,26 @@
 # Facts only. No storytelling. No adjectives unless earned.
 
 ==================================================
+HERO
+==================================================
+
+TITLE:
+Hello,
+I'm Wesley
+
+TYPING_LINES:
+Mechanical Engineer
+Robotics & Automation
+National-Level Athlete
+Systems Problem Solver
+
+SUMMARY:
+I am a mechanical engineer focused on designing and validating systems for high-load, high-risk, and constrained environments.
+
+STATUS:
+Seeking full-time mechanical engineering or robotics roles immediately.
+
+==================================================
 BASIC INFO
 ==================================================
 
@@ -29,7 +49,7 @@ SHORT PROFESSIONAL SUMMARY
 
 (3–5 sentences max. What you do, how you do it, and why it matters.)
 
-Mechanical engineer specializing in applied dynamics and robotics with a proven track record of leading cross-disciplinary projects from concept to completion. Expert in rapid prototyping and FEA simulations, focusing on turning complex technical analyses into high-impact, functional designs for heavy-duty environments.
+Mechanical Engineer building robotics, FEA-driven systems, and production-ready designs.
 
 ==================================================
 CORE SKILLS

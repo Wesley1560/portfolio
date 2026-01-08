@@ -12,12 +12,10 @@ import GetInTouch from "@/components/GetInTouch";
 import { portfolioContent } from "@/lib/content";
 
 export default function Home() {
-  const professionalSummary = portfolioContent.professionalSummary.join(" ");
-
   return (
     <main className="min-h-screen bg-background text-foreground flex flex-col">
       <Navigation />
-      <Hero professionalSummary={professionalSummary} />
+      <Hero hero={portfolioContent.hero} />
       <WhyHireMe />
       <Snapshots />
       <div id="work-experience">

@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Wesley Eze's Portfolio",
-  description: "Mechanical Engineer with experience in robotics, FEA, and systems design",
+  description: portfolioContent.hero.summary,
   icons: {
     icon: [
       {
@@ -20,13 +20,13 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Wesley Eze's Portfolio",
-    description: "Mechanical Engineer with experience in robotics, FEA, and systems design",
+    description: portfolioContent.hero.summary,
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Wesley Eze's Portfolio",
-    description: "Mechanical Engineer with experience in robotics, FEA, and systems design",
+    description: portfolioContent.hero.summary,
   },
 };
 
