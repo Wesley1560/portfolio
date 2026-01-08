@@ -20,7 +20,7 @@ SUMMARY:
 I am a mechanical engineer focused on designing and validating systems for high-load, high-risk, and constrained environments.
 
 STATUS:
-Seeking full-time mechanical engineering or robotics roles immediately.
+full-time mechanical engineering roles immediately
 
 ==================================================
 BASIC INFO
