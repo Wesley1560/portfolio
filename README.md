@@ -17,7 +17,7 @@ npm install
 npm run dev
 ```
 
-Open [[http://wesleyeze.com](http://wesleyeze.com)](http://wesleyeze.com) to view the site.
+Open [[http://wesleyeze.com](http://wesleyeze.com)] to view the site.
 
 ## Build for Static Export
 
