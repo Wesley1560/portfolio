@@ -771,7 +771,7 @@ export default function Education() {
             {/* Project Link */}
             <div className="mt-5 pt-4 border-t border-default-200">
               <a
-                href="https://wesleyeze.com/papers/vvc_paper.pdf"
+                href="https://wesleyeze.com/papers/capstone_paper.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm text-foreground/80 hover:text-foreground font-medium transition-colors duration-200"
