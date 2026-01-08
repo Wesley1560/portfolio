@@ -15,7 +15,7 @@ export default function FeaturedProjects() {
   const projects: Project[] = [
     {
       title: "Personal Portfolio Website",
-      dateRange: "2024",
+      dateRange: "2026",
       overview: "Modern, responsive portfolio website showcasing engineering and software development expertise.",
       bullets: [
         "Built with Next.js, TypeScript, and Tailwind CSS for optimal performance and accessibility",
@@ -30,7 +30,7 @@ export default function FeaturedProjects() {
     },
     {
       title: "MEC E 360 – Heavy Duty EV Transmission",
-      dateRange: "2023–2024",
+      dateRange: "Apr 2024 – Aug 2024",
       overview: "Led cross-functional team in designing and validating heavy-duty electric vehicle transmission system.",
       bullets: [
         "Managed project timeline and deliverables for 8-person engineering team",
@@ -46,7 +46,7 @@ export default function FeaturedProjects() {
     },
     {
       title: "MEC E 464 – Design for Manufacturing RC Car",
-      dateRange: "2024",
+      dateRange: "Jan 2025 – Apr 2025",
       overview: "Comprehensive design-for-manufacturing analysis optimizing RC car performance through multi-process fabrication.",
       bullets: [
         "Implemented GD&T and statistical tolerance analysis to minimize manufacturing defects",
@@ -57,7 +57,7 @@ export default function FeaturedProjects() {
     },
     {
       title: "VVC Multi-Sport Training Facility",
-      dateRange: "2022–2023",
+      dateRange: "Jul 2025 – Present",
       overview: "Designed and validated multi-purpose athletic training facility meeting international safety standards.",
       bullets: [
         "Optimized spatial layout for hockey, throwing, and multi-sport training requirements",
@@ -73,7 +73,7 @@ export default function FeaturedProjects() {
     },
     {
       title: "MEC E 563 – Aircraft Wing Fuel Placement FEA",
-      dateRange: "2024",
+      dateRange: "Jan 2025 – Apr 2025",
       overview: "Advanced finite element analysis of aircraft wing fuel placement optimizing structural integrity and weight.",
       bullets: [
         "Performed comprehensive FEA simulation reducing peak stress concentrations by 35%",
