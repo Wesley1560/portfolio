@@ -143,7 +143,7 @@ function parseHero(lines: string[]): Hero {
       } else {
         hero.summary = line;
       }
-    } else if (currentField === 'status' && line) {
+    } else if (currentField === 'status' && line && !line.includes('=') && !line.startsWith('BASIC INFO')) {
       if (hero.status) {
         hero.status += ' ' + line;
       } else {
