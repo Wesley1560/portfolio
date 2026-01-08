@@ -66,8 +66,8 @@ export default function FeaturedProjects() {
       ],
       tags: ["Facility Design", "Safety Engineering", "CSA Standards", "Structural Analysis", "Client Delivery"],
       link: {
-        url: "https://www.overleaf.com/read/pqkkvhbnvbmd#3eac00",
-        label: "View Project",
+        url: "https://wesleyeze.com/papers/vvc_paper.pdf",
+        label: "View Project Paper",
         icon: "paper"
       }
     },
@@ -82,8 +82,8 @@ export default function FeaturedProjects() {
       ],
       tags: ["FEA", "ANSYS", "Aircraft Structures", "Stress Analysis", "Boeing Standards"],
       link: {
-        url: "https://www.overleaf.com/read/phxrmythcgmd#f26bda",
-        label: "View Project",
+        url: "https://wesleyeze.com/papers/563_paper.pdf",
+        label: "View Project Paper",
         icon: "paper"
       }
     }
