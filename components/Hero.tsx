@@ -15,7 +15,7 @@ export default function Hero({ professionalSummary }: HeroProps) {
     "National Level Athlete",
     "Problem Solver",
     "Mechanical Engineer",
-    "Innovator",
+    "Competitor",
   ];
 
   useEffect(() => {
