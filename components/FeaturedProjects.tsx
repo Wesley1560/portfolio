@@ -1,55 +1,82 @@
 type Project = {
-  year: number;
-  month: string;
   title: string;
-  description: string;
+  dateRange?: string;
+  overview: string;
+  bullets: string[];
   tags: string[];
-  link: string;
+  link?: {
+    url: string;
+    label: string;
+    icon?: 'github' | 'paper' | 'youtube';
+  };
 };
 
 export default function FeaturedProjects() {
-  // Placeholder data - can be replaced with real data later
   const projects: Project[] = [
     {
-      year: 2024,
-      month: "March",
-      title: "Real-time Collaborative Whiteboard",
-      description: "A web-based collaborative whiteboard application with real-time synchronization, allowing multiple users to draw and interact simultaneously.",
-      tags: ["React", "WebSockets", "Canvas API", "TypeScript"],
-      link: "https://example.com/project1",
+      title: "Personal Portfolio Website",
+      dateRange: "2024",
+      overview: "Modern, responsive portfolio website showcasing engineering and software development expertise.",
+      bullets: [
+        "Built with Next.js, TypeScript, and Tailwind CSS for optimal performance and accessibility",
+        "Implemented automated deployment pipelines with Vercel and comprehensive version control"
+      ],
+      tags: ["Next.js", "TypeScript", "Tailwind CSS", "Vercel", "Git"],
+      link: {
+        url: "https://github.com/Wesley1560/portfolio",
+        label: "View on GitHub",
+        icon: "github"
+      }
     },
     {
-      year: 2024,
-      month: "January",
-      title: "Personal Finance Tracker",
-      description: "A comprehensive budgeting application with expense categorization, goal tracking, and data visualization.",
-      tags: ["Next.js", "Prisma", "PostgreSQL", "Chart.js"],
-      link: "https://example.com/project2",
+      title: "MEC E 360 – Heavy Duty EV Transmission",
+      dateRange: "2023–2024",
+      overview: "Led cross-functional team in designing and validating heavy-duty electric vehicle transmission system.",
+      bullets: [
+        "Managed project timeline and deliverables for 8-person engineering team",
+        "Conducted FEA analysis and hand calculations to validate gear design against AGMA standards",
+        "Automated gear selection process, reducing design iteration time by 60%"
+      ],
+      tags: ["Project Management", "FEA", "AGMA Standards", "Gear Design", "Automation"],
+      link: {
+        url: "https://youtu.be/AnqY57Zkp20",
+        label: "Watch Video",
+        icon: "youtube"
+      }
     },
     {
-      year: 2023,
-      month: "November",
-      title: "AI-Powered Recipe Generator",
-      description: "Machine learning application that generates personalized recipes based on available ingredients and dietary preferences.",
-      tags: ["Python", "TensorFlow", "Flask", "OpenAI API"],
-      link: "https://example.com/project3",
+      title: "MEC E 464 – Design for Manufacturing RC Car",
+      dateRange: "2024",
+      overview: "Comprehensive design-for-manufacturing analysis optimizing RC car performance through multi-process fabrication.",
+      bullets: [
+        "Implemented GD&T and statistical tolerance analysis to minimize manufacturing defects",
+        "Conducted trade-off analysis between manufacturing cost and performance requirements",
+        "Achieved 25% improvement in vehicle stability through optimized component design"
+      ],
+      tags: ["DFM", "GD&T", "Tolerance Analysis", "CNC Machining", "Performance Optimization"]
     },
     {
-      year: 2023,
-      month: "August",
-      title: "Task Management CLI Tool",
-      description: "A command-line interface for managing tasks with features like priority levels, due dates, and project organization.",
-      tags: ["Node.js", "CLI", "SQLite", "Inquirer"],
-      link: "https://example.com/project4",
+      title: "VVC Multi-Sport Training Facility",
+      dateRange: "2022–2023",
+      overview: "Designed and validated multi-purpose athletic training facility meeting international safety standards.",
+      bullets: [
+        "Optimized spatial layout for hockey, throwing, and multi-sport training requirements",
+        "Conducted structural analysis and safety validation per CSA and ASTM standards",
+        "Delivered client-approved design achieving all performance and safety specifications"
+      ],
+      tags: ["Facility Design", "Safety Engineering", "CSA Standards", "Structural Analysis", "Client Delivery"]
     },
     {
-      year: 2023,
-      month: "May",
-      title: "Weather Dashboard Widget",
-      description: "A beautiful weather dashboard widget with location-based forecasts, interactive maps, and detailed meteorological data visualization.",
-      tags: ["Vue.js", "Weather API", "D3.js", "PWA"],
-      link: "https://example.com/project5",
-    },
+      title: "MEC E 563 – Aircraft Wing Fuel Placement FEA",
+      dateRange: "2024",
+      overview: "Advanced finite element analysis of aircraft wing fuel placement optimizing structural integrity and weight.",
+      bullets: [
+        "Performed comprehensive FEA simulation reducing peak stress concentrations by 35%",
+        "Validated analytical models against Boeing 747-8 structural requirements",
+        "Optimized fuel tank positioning for minimal weight penalty and maximum safety margins"
+      ],
+      tags: ["FEA", "ANSYS", "Aircraft Structures", "Stress Analysis", "Boeing Standards"]
+    }
   ];
 
   return (
@@ -72,53 +99,45 @@ export default function FeaturedProjects() {
               key={index}
               className="bg-content1 rounded-lg p-5 sm:p-6 border border-default-200 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col"
             >
-              {/* Top Left: Hammer Icon + Year */}
-              <div className="flex items-center gap-2 mb-4">
-                <svg
-                  className="w-4 h-4 text-[#695336]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-                  />
-                </svg>
-                <span className="text-sm text-foreground/70 font-medium">
-                  {project.year}
-                </span>
-              </div>
-
               {/* Project Title */}
               <h3 className="text-lg sm:text-xl font-semibold text-foreground mb-3">
                 {project.title}
               </h3>
 
-              {/* Calendar Icon + Month Year */}
-              <div className="flex items-center gap-1.5 text-xs sm:text-sm text-foreground/70 mb-4">
-                <svg
-                  className="w-4 h-4 text-[#695336]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-                <span>{project.month} {project.year}</span>
-              </div>
+              {/* Date Range */}
+              {project.dateRange && (
+                <div className="flex items-center gap-1.5 text-xs sm:text-sm text-foreground/70 mb-4">
+                  <svg
+                    className="w-4 h-4 text-[#695336]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <span>{project.dateRange}</span>
+                </div>
+              )}
 
-              {/* Project Description */}
-              <p className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-6 flex-grow line-clamp-3">
-                {project.description}
+              {/* Project Overview */}
+              <p className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-4">
+                {project.overview}
               </p>
+
+              {/* Bullet Points */}
+              <ul className="text-sm sm:text-base text-foreground/80 leading-relaxed mb-6 flex-grow space-y-2">
+                {project.bullets.map((bullet, bulletIndex) => (
+                  <li key={bulletIndex} className="flex items-start gap-2">
+                    <span className="text-[#695336] mt-1.5 flex-shrink-0">•</span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
 
               {/* Footer */}
               <div className="mt-auto">
@@ -137,28 +156,32 @@ export default function FeaturedProjects() {
                   ))}
                 </div>
 
-                {/* View Project Link */}
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-foreground/80 hover:text-foreground font-medium transition-colors duration-200"
-                >
-                  <span>View Project</span>
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+                {/* Project Link */}
+                {project.link && (
+                  <a
+                    href={project.link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-foreground/80 hover:text-foreground font-medium transition-colors duration-200"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </a>
+                    {project.link.icon === 'github' && (
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                      </svg>
+                    )}
+                    {project.link.icon === 'youtube' && (
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M23.498 6.186a2.997 2.997 0 0 0-2.11-2.11C19.568 3.5 12 3.5 12 3.5s-7.568 0-9.388.576A2.997 2.997 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a2.997 2.997 0 0 0 2.11 2.11c1.82.576 9.388.576 9.388.576s7.568 0 9.388-.576a2.997 2.997 0 0 0 2.11-2.11C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.75 15.02V8.98l6.5 3.02-6.5 3.02z"/>
+                      </svg>
+                    )}
+                    {project.link.icon === 'paper' && (
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                      </svg>
+                    )}
+                    <span>{project.link.label}</span>
+                  </a>
+                )}
               </div>
             </div>
           ))}
