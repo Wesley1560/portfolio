@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Navigation from "@/components/Navigation";
+import WhyHireMe from "@/components/WhyHireMe";
 import Snapshots from "@/components/Snapshots";
 import WorkExperience from "@/components/WorkExperience";
 import Education from "@/components/Education";
@@ -16,6 +17,7 @@ export default function Home() {
     <main className="min-h-screen bg-background text-foreground flex flex-col">
       <Navigation />
       <Hero professionalSummary={professionalSummary} />
+      <WhyHireMe />
       <Snapshots />
       <div id="work-experience">
         <WorkExperience />
