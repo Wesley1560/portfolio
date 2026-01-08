@@ -20,7 +20,7 @@ export default function WorkExperience() {
   const currentRole: WorkExperience[] = [
     {
       yearStart: "2025",
-      yearEnd: "Present",
+      yearEnd: "",
       monthStart: "September",
       monthEnd: "Present",
       workType: "Full-Time",
