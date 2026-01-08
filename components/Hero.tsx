@@ -50,8 +50,8 @@ export default function Hero({ hero }: HeroProps) {
   const highlightKeywords = (text: string) => {
     const keywords = [
       "mechanical engineer",
-      "FEA-driven",
-      "production-ready",
+      "high-load",
+      "high-risk",
     ];
 
     // Sort by length (longest first) to avoid partial matches
