@@ -54,11 +54,8 @@ export default function Hero({ professionalSummary }: HeroProps) {
   const highlightKeywords = (text: string) => {
     const keywords = [
       "mechanical engineer",
-      "applied dynamics",
-      "cross-disciplinary",
-      "rapid prototyping",
-      "high-impact",
-      "functional",
+      "FEA-driven",
+      "production-ready",
     ];
 
     // Sort by length (longest first) to avoid partial matches
@@ -105,7 +102,7 @@ export default function Hero({ professionalSummary }: HeroProps) {
           <p
             className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-gray-600 dark:text-gray-400 font-light leading-relaxed max-w-3xl mx-auto"
             dangerouslySetInnerHTML={{
-              __html: highlightKeywords(professionalSummary),
+              __html: highlightKeywords("DEBUG: HERO TEXT SOURCE CONFIRMED"),
             }}
           />
         </div>
