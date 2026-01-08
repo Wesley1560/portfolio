@@ -49,19 +49,7 @@ export default function FeaturedProjects() {
         "Automated gear selection process, reducing design iteration time by 60%"
       ],
       tags: ["Project Management", "FEA", "AGMA Standards", "Gear Design", "Automation"],
-      badges: ["Academic", "Team Lead"],
-      links: {
-        primary: {
-          url: "https://wesleyeze.com/papers/vvc_paper.pdf",
-          label: "View Project",
-          icon: "paper"
-        },
-        secondary: [{
-          url: "https://youtu.be/AnqY57Zkp20",
-          label: "Watch Demo",
-          icon: "youtube"
-        }]
-      }
+      badges: ["Academic", "Team Lead"]
     },
     {
       title: "MEC E 464 – Design for Manufacturing RC Car",
