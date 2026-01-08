@@ -6,6 +6,7 @@ import WorkExperience from "@/components/WorkExperience";
 import Education from "@/components/Education";
 import FeaturedProjects from "@/components/FeaturedProjects";
 import AthleticBackground from "@/components/AthleticBackground";
+import TechStack from "@/components/TechStack";
 import SkillsTechnology from "@/components/SkillsTechnology";
 import GetInTouch from "@/components/GetInTouch";
 import { portfolioContent } from "@/lib/content";
@@ -31,6 +32,7 @@ export default function Home() {
       <div id="athletic-background">
         <AthleticBackground />
       </div>
+      <TechStack />
       <div id="skills-technology">
         <SkillsTechnology />
       </div>
