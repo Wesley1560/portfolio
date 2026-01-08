@@ -5,16 +5,28 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Wesley Eze's Portfolio",
-  description: "Mechanical Engineer | Robotics, Automation, Rapid Prototyping. Specializing in design engineering, CAD/CAM, and innovative manufacturing solutions.",
+  description: "Mechanical Engineer with experience in robotics, FEA, and systems design",
+  icons: {
+    icon: [
+      {
+        url: "/website_logo/wesley_eze_monogram_logo_dark.png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/website_logo/wesley_eze_monogram_logo_light.png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
   openGraph: {
     title: "Wesley Eze's Portfolio",
-    description: "Mechanical Engineer | Robotics, Automation, Rapid Prototyping. Specializing in design engineering, CAD/CAM, and innovative manufacturing solutions.",
+    description: "Mechanical Engineer with experience in robotics, FEA, and systems design",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Wesley Eze's Portfolio",
-    description: "Mechanical Engineer | Robotics, Automation, Rapid Prototyping. Specializing in design engineering, CAD/CAM, and innovative manufacturing solutions.",
+    description: "Mechanical Engineer with experience in robotics, FEA, and systems design",
   },
 };
 
