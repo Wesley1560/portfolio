@@ -20,7 +20,7 @@ SUMMARY:
 I am a mechanical engineer focused on designing and validating systems for high-load, high-risk, and constrained environments.
 
 STATUS:
-Seeking full-time mechanical engineering or robotics roles immediately.
+Currently employed as a Mechanical Field Engineer I at Amazon Web Services (AWS) and not actively seeking new opportunities.
 
 ==================================================
 BASIC INFO

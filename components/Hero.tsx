@@ -103,7 +103,7 @@ export default function Hero({ hero }: HeroProps) {
         </div>
 
         {/* Seeking Employment - One line of space after summary */}
-        <p className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-green-600 dark:text-green-400 font-medium mt-4 sm:mt-5 md:mt-6 text-center">
+        <p className="text-base sm:text-lg md:text-xl lg:text-xl xl:text-2xl text-red-600 dark:text-red-400 font-medium mt-4 sm:mt-5 md:mt-6 text-center">
           {hero.status}
         </p>
 

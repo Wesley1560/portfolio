@@ -19,10 +19,26 @@ export default function WorkExperience() {
   // Work experience data sourced from resume
   const currentRole: WorkExperience[] = [
     {
-      yearStart: "2025",
+      yearStart: "2026",
       yearEnd: "",
-      monthStart: "September",
+      monthStart: "June",
       monthEnd: "Present",
+      workType: "Full-Time",
+      jobTitle: "Mechanical Field Engineer I",
+      companyName: "Amazon Web Services (AWS)",
+      location: "Umatilla, OR, United States",
+      description:
+        "Operate, maintain, and improve the reliability of large-scale data center critical infrastructure, including mechanical cooling, electrical, and controls systems supporting AWS cloud services.",
+      tags: ["Data Center", "Critical Infrastructure", "Mechanical Systems", "Reliability", "AWS"],
+    },
+  ];
+
+  const pastExperiences: WorkExperience[] = [
+    {
+      yearStart: "2025",
+      yearEnd: "2026",
+      monthStart: "September",
+      monthEnd: "June",
       workType: "Full-Time",
       jobTitle: "Additive Manufacturing Design Engineer",
       companyName: "NEX Valve",
@@ -31,9 +47,6 @@ export default function WorkExperience() {
         "Designed 3D CAD models and detailed 2D drawings for valve components; performed FEA validations and hand calculations to verify structural integrity. Led rapid prototyping (FDM, SLA) and developed a provisional patent for a novel line blind design.",
       tags: ["Additive Manufacturing", "CAD", "FEA", "Rapid Prototyping", "Patent"],
     },
-  ];
-
-  const pastExperiences: WorkExperience[] = [
     {
       yearStart: "2024",
       yearEnd: "2024",
